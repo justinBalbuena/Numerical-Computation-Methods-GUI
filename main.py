@@ -1,5 +1,5 @@
 import streamlit as st
-
+import functions
 
 # Define the different pages as functions
 def home():
@@ -38,8 +38,26 @@ def project6():
 
 
 def project7():
-    st.title("Contact Page")
-    st.write("Get in touch with us.")
+    st.title("Lagrange Interpolation")
+
+    st.html(
+        f"""
+            <style>
+                .size_box {{
+                    justify-content: center;
+                    align-items: center;
+                }}
+                .text {{
+                    padding-top: 16px;
+                    padding-bottom: 16px;
+                }}
+            </style>
+            <div class="size_box">
+                <h4 class="text">Please enter how many set of values you would like to put</h4>
+            </div>
+        """
+    )
+    st.text_input(label="**:green[Input]**: ", key="amount_of_values")
 
 
 def project8():
