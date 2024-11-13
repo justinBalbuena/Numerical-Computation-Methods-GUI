@@ -56,19 +56,21 @@ def simpson_rule(x,f_x,h):
     solution *= f_x[0] + 2*sum_of_simpson1+ 4*sum_of_simpson2 + f_x[index]
     return solution
 
+def main():
+    x = [1.0, 1.1, 1.3, 1.4, 1.5, 1.7, 1.8]
+    f_x = [1.543,1.669,1.971,2.151,2.352,2.828,3.107]
+    f_x1 = Lagrange(1.2,x=[1.0,1.1,1.3],f=[1.543,1.669,1.971])
+    f_x2 = Lagrange(1.6,x=[1.4, 1.5, 1.7],f=[2.151,2.352,2.828])
+    x.insert(2,1.2)
+    x.insert(6,1.6)
+    f_x.insert(2,f_x1)
+    f_x.insert(6,f_x2)
+    h = 0.1
+    print("Integrates continuous function using both trapezoidal and simpson rule")
 
-x = [1.0, 1.1, 1.3, 1.4, 1.5, 1.7, 1.8]
-f_x = [1.543,1.669,1.971,2.151,2.352,2.828,3.107]
-f_x1 = Lagrange(1.2,x=[1.0,1.1,1.3],f=[1.543,1.669,1.971])
-f_x2 = Lagrange(1.6,x=[1.4, 1.5, 1.7],f=[2.151,2.352,2.828])
-x.insert(2,1.2)
-x.insert(6,1.6)
-f_x.insert(2,f_x1)
-f_x.insert(6,f_x2)
-h = 0.1
-print("Integrates continuous function using both trapezoidal and simpson rule")
+    solution = trapezoidal_rule(x,f_x,h)
+    solution1 = simpson_rule(x,f_x,h)
+    print("Trapezoidal rule: ", solution)
+    print("Simpson rule: ", solution1)
 
-solution = trapezoidal_rule(x,f_x,h)
-solution1 = simpson_rule(x,f_x,h)
-print("Trapezoidal rule: ", solution)
-print("Simpson rule: ", solution1)
+main()
