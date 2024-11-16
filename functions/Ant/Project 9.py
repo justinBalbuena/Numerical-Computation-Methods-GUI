@@ -1,5 +1,3 @@
-from sympy import symbols
-
 def Lagrange(z, x, f):
     # Get the number of data points
     n = len(x)

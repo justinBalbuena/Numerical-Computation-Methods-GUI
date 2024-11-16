@@ -3,8 +3,8 @@ import streamlit as st
 
 # Define the different pages as functions
 def home():
-    st.title("Home Page")
-    st.write("Welcome to the Home Page!")
+    st.title("About ")
+    st.write("")
 
 
 def project1():
@@ -52,6 +52,7 @@ def project9():
     st.write("Get in touch with us.")
 
 
+
 page_names_to_funcs = {
     "Home": home,
     "Project 1": project1,
@@ -64,5 +65,36 @@ page_names_to_funcs = {
     "Project 8": project8,
     "Project 9": project9
 }
-pages = st.sidebar.selectbox("Choose a project", page_names_to_funcs.keys())
-page_names_to_funcs[pages]()
+root_finding_methods = {
+    "Bisection Method",
+    "False-Position Method",
+    "Secant Method",
+    "Newton Method"
+}
+linear_algebraic_methods = {
+    "Gaussian directed Elimination",
+    "Gaussian-Jordan directed Elimination",
+    "Gauss-Seidel iterative Method",
+    "Jacobi iterative Method",
+}
+Numerical_diff = {
+    "Lagrange Interpolation",
+    "Two point forward difference formula",
+    "Three point center difference formula",
+    "Three point forward difference formula",
+}
+Numerical_int = {
+    "Trapezoidal rule (multiple application)",
+    "Simpson's rule (Composite)"
+}
+Non_linear_opti = {
+    "Golden Section Method",
+    "Newton Method"
+}
+
+pages = st.sidebar.button("Home",home())
+S1 = st.sidebar.selectbox("Root-Finding Methods",root_finding_methods)
+S2 = st.sidebar.selectbox("Numerical linear algebraic equations",linear_algebraic_methods)
+S3 = st.sidebar.selectbox("Numerical Differentiation",Numerical_diff)
+S4 = st.sidebar.selectbox("Numerical Integration",Numerical_int)
+S5 = st.sidebar.selectbox("Non-Linear Optimization",Non_linear_opti)
