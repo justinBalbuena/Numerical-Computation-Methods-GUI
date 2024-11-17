@@ -1,5 +1,7 @@
 import streamlit as st
-import functions
+from functions import *
+from format_functions import number_field
+
 
 # Define the different pages as functions
 def home():
@@ -57,7 +59,11 @@ def project7():
             </div>
         """
     )
-    st.text_input(label="**:green[Input]**: ", key="amount_of_values")
+    st.text_input(label="**:green[Rows]**: ", key="amount_of_rows")
+    st.text_input(label="**:green[Columns]**: ", key="amount_of_columns")
+
+    if st.button("Submit"):
+        number_field.number_field(int(st.session_state["amount_of_rows"]), int(st.session_state["amount_of_columns"]))
 
 
 def project8():
@@ -66,6 +72,11 @@ def project8():
 
 
 def project9():
+    st.title("Contact Page")
+    st.write("Get in touch with us.")
+
+
+def project10():
     st.title("Contact Page")
     st.write("Get in touch with us.")
 
@@ -80,7 +91,8 @@ page_names_to_funcs = {
     "Project 6": project6,
     "Project 7": project7,
     "Project 8": project8,
-    "Project 9": project9
+    "Project 9": project9,
+    "Project 10": project10
 }
 pages = st.sidebar.selectbox("Choose a project", page_names_to_funcs.keys())
 page_names_to_funcs[pages]()
