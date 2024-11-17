@@ -1,4 +1,4 @@
-def Lagrange(z, x, f):
+def lagrange(z, x, f):
     # Get the number of data points
     n = len(x)
     # Initialize the result of interpolation to 0
