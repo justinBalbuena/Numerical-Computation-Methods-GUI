@@ -2,8 +2,8 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 #must download streamlit option menu package 4.0
 
-#from functions.Ant.bisection import ant_bisection_method
 
+from functions.Ant.bisection import ant_bisection_method, find_roots
 
 st.set_page_config(layout="wide")
 # Define the different pages as functions
@@ -21,15 +21,31 @@ def bisection_method():
     #this is calculation section
     st.header("Calculation",divider="blue")
     #Calculation Section
-    error_method = st.radio("Error Tolerance Method",error_tolerance_methods.keys())
-    result = error_tolerance_methods[error_method]()
-    st.text_input("Enter a function Ex(2*sin(x)) or 2**3 for powers")
-    x1 = st.number_input(label="Enter a value for x1")
-    x2 = st.number_input(label="Enter a value for x2")
-    tolerance = st.number_input(label="Tolerance value (absolute values will be used)")
-
-
-
+    bisection_form = st.form(key="bisection_form")
+    error_method = bisection_form.radio("Error Tolerance Method",error_tolerance_methods.keys())
+    #value of the flag
+    flag = error_tolerance_methods[error_method]()
+    #user input for function
+    function = bisection_form .text_input("Enter a function Ex(2*sin(x)) or 2**3 for powers")
+    #value for x1
+    x1 = bisection_form .number_input(label="Enter a value for x1")
+    #value for x2
+    x2 = bisection_form .number_input(label="Enter a value for x2")
+    #tolerance
+    tolerance = bisection_form .number_input(label="Tolerance value (absolute values will be used)")
+    #button to execute the script
+    pressed = bisection_form.form_submit_button("Evaluate")
+    #Result Section
+    if pressed:
+        st.header("Results",divider="blue")
+        root = ant_bisection_method(x1,x2,function,tolerance,flag)
+        true_root = find_roots(function,(x2+x1)/2)
+        if root:
+            st.write("The Root of the function ",function," is: ",root)
+            st.write("True Value: ",true_root)
+            st.write("")
+        else:
+            st.write("The Root for the function could not be found!")
 
 def false_position_method():
     st.title("False Position Method")
@@ -79,19 +95,6 @@ def true_absolute_error_method():
 def combination():
     return "d"
 
-#Function for
-# page_names_to_funcs = {
-#     "Home": home,
-#     "Project 1": project1,
-#     "Project 2": project2,
-#     "Project 3": project3,
-#     "Project 4": project4,
-#     "Project 5": project5,
-#     "Project 6": project6,
-#     "Project 7": project7,
-#     "Project 8": project8,
-#     "Project 9": project9
-# }
 homepage = {
     "Home": home,
 }
@@ -127,35 +130,7 @@ error_tolerance_methods = {
     "True Absolute Error": true_absolute_error_method,
     "Combination of Absolute Error and Relative Error": combination
 }
-# home_page = st.sidebar.button("Home")
-# S1 = st.sidebar.selectbox("Root-Finding Methods",root_finding_methods.keys())
-# S2 = st.sidebar.selectbox("Numerical linear algebraic equations",linear_algebraic_methods)
-# S3 = st.sidebar.selectbox("Numerical Differentiation",Numerical_diff)
-# S4 = st.sidebar.selectbox("Numerical Integration",Numerical_int)
-# S5 = st.sidebar.selectbox("Non-Linear Optimization",Non_linear_opti)
-#
-# if home_page:
-#     home()
-#
-# #Option For S1
-# if S1 == "Bisection Method":
-#     bisection_method()
-# if S1 == "False-Position Method":
-#     false_position_method()
-# elif S1 == "Secant Method":
-#     secant_method()
-# elif S1 == "Newton Method":
-#     newton_method()
-#
-# #Option for S2
-# if S2 == "Gaussian directed Elimination":
-#     gaussian_directed_elimination()
-# elif S2 == "Gaussian-Jordan directed Elimination":
-#     gaussian_jordan_directed_elimination()
-# elif S2 == "Gauss-Seidel iterative Method":
-#     gauss_seidel_iterative_Method()
-# elif S2 == "Jacobi iterative Method":
-#     jacobi_iterative_method()
+
 navigation = st.sidebar
 
 homepage = option_menu(None,options = ["Home", "Root-Finding Methods", "Linear Algebraic Equations",'Numerical Differentiation','Numerical Integration','Non-Linear Optimization'],
@@ -169,7 +144,6 @@ homepage = option_menu(None,options = ["Home", "Root-Finding Methods", "Linear A
         }
     }
     )
-
 
 if homepage == "Home":
     home()
