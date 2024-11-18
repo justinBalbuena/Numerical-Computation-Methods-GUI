@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from page_layout.home_page import home_page
+from page_layout.bisection_page_layout import bisection_page_layout
 #must download streamlit option menu package 4.0
-
 
 from functions.Ant.bisection import ant_bisection_method, find_roots
 
@@ -10,43 +11,9 @@ st.set_page_config(layout="wide")
 def home():
     st.title("Overview")
     st.write("Welcome! This is a simple GUI (Graphic User Interface) that preforms varies types of numerical methods. Please write more?")
-
 #Functions for root finding method
 def bisection_method():
-    st.title("Bisection Method")
-    #Explain the Theorem
-    st.header("Theorem",divider="blue")
-    st.write("An equation f(x)=0, where f(x) is a real continuous function, has at least one root between x1 and x2 if f(x1) f(x2) < 0 (the function changes sign on opposite sides of the root)")
-    st.write("So at least one root of the equation f(x)=0 exists between the two points if the function f(x) is real, continuous, and changes sign on the interval [x1,x2]")
-    #this is calculation section
-    st.header("Calculation",divider="blue")
-    #Calculation Section
-    bisection_form = st.form(key="bisection_form")
-    error_method = bisection_form.radio("Error Tolerance Method",error_tolerance_methods.keys())
-    #value of the flag
-    flag = error_tolerance_methods[error_method]()
-    #user input for function
-    function = bisection_form .text_input("Enter a function Ex(2*sin(x)) or 2**3 for powers")
-    #value for x1
-    x1 = bisection_form .number_input(label="Enter a value for x1")
-    #value for x2
-    x2 = bisection_form .number_input(label="Enter a value for x2")
-    #tolerance
-    tolerance = bisection_form .number_input(label="Tolerance value (absolute values will be used)")
-    #button to execute the script
-    pressed = bisection_form.form_submit_button("Evaluate")
-    #Result Section
-    if pressed:
-        st.header("Results",divider="blue")
-        root = ant_bisection_method(x1,x2,function,tolerance,flag)
-        true_root = find_roots(function,(x2+x1)/2)
-        if root:
-            st.write("The Root of the function ",function," is: ",root)
-            st.write("True Value: ",true_root)
-            st.write("")
-        else:
-            st.write("The Root for the function could not be found!")
-
+    bisection_page_layout()
 def false_position_method():
     st.title("False Position Method")
 def secant_method():
@@ -86,14 +53,6 @@ def golden_section_method():
 def nl_newton_method():
     st.title("Newton Method (with an automatic evaluation of a corresponding derivative)")
 
-def absolute_error_method():
-    return "a"
-def relative_error_method():
-    return "b"
-def true_absolute_error_method():
-    return "c"
-def combination():
-    return "d"
 
 homepage = {
     "Home": home,
@@ -124,27 +83,8 @@ Non_linear_opti = {
     "Golden Section Method": golden_section_method,
     "Newton Method": nl_newton_method
 }
-error_tolerance_methods = {
-    "Absolute Error": absolute_error_method,
-    "Relative Error": relative_error_method,
-    "True Absolute Error": true_absolute_error_method,
-    "Combination of Absolute Error and Relative Error": combination
-}
 
-navigation = st.sidebar
-
-homepage = option_menu(None,options = ["Home", "Root-Finding Methods", "Linear Algebraic Equations",'Numerical Differentiation','Numerical Integration','Non-Linear Optimization'],
-    icons=['house','calculator', "braces",'list-ol','type-italic',"graph-up"],
-    menu_icon="cast", default_index=0, orientation="horizontal",
-    styles={
-        "container":{"width":"100%"},
-        "nav-link": {"font-size": "12px", "text-align": "center", "margin":"0px","color":"#eee"},
-        "nav-link-selected": {
-            "background-color": "#112A46",
-        }
-    }
-    )
-
+homepage = home_page()
 if homepage == "Home":
     home()
 if homepage == "Root-Finding Methods":
