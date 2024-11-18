@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+
 from page_layout.home_page import home_page
 from page_layout.bisection_page_layout import bisection_page_layout
 #must download streamlit option menu package 4.0
@@ -12,12 +13,14 @@ def home():
     st.title("Overview")
     st.write("Welcome! This is a simple GUI (Graphic User Interface) that preforms varies types of numerical methods. Please write more?")
 #Functions for root finding method
+
 def bisection_method():
     bisection_page_layout()
 def false_position_method():
     st.title("False Position Method")
 def secant_method():
     st.title("Secant Method")
+
 def newton_method():
     st.title("Newton Method")
 
@@ -99,5 +102,8 @@ if homepage == "Numerical Differentiation":
 if homepage == "Numerical Integration":
     n_i= st.selectbox("Select Numerical Integration Method",Numerical_int.keys())
     Numerical_int[n_i]()
+if homepage == "Non-Linear Optimization":
+    n_l_o = st.selectbox("Select Non-Linear Optimization Method",Non_linear_opti.keys())
+    Non_linear_opti[n_l_o]()
 
 
