@@ -19,8 +19,8 @@ def lagrange_interpolation(x_vals, y_vals, wanted_value):
         interpolated_value += lagrange * y_vals[i]
     return interpolated_value
 
+if __name__ == "__main__":
+    x_array = [0.3, 0.5, 0.7, 0.9, 1.1]
+    y_array = [0.404958, 0.824361, 1.40963, 2.21364, 3.30458]
 
-x_array = [0.3, 0.5, 0.7, 0.9, 1.1]
-y_array = [0.404958, 0.824361,  1.40963, 2.21364, 3.30458]
-
-print(lagrange_interpolation(x_array, y_array, 0.6))
+    print(lagrange_interpolation(x_array, y_array, 0.6))
