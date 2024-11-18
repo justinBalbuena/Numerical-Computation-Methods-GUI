@@ -68,7 +68,7 @@ root_finding_methods = {
 linear_algebraic_methods = {
     "Gaussian directed Elimination": gaussian_directed_elimination,
     "Gaussian-Jordan directed Elimination": gaussian_jordan_directed_elimination,
-    "Gauss-Seidel iterative Method": gauss_seidel_iterative_Method,
+    "Gauss-Seidel iterative Method": gauss_seidel_iterative_method,
     "Jacobi iterative Method": jacobi_iterative_method
 }
 Numerical_diff = {
