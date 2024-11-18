@@ -20,7 +20,6 @@ def false_position_method():
     st.title("False Position Method")
 def secant_method():
     st.title("Secant Method")
-
 def newton_method():
     st.title("Newton Method")
 
