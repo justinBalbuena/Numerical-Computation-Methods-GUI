@@ -29,7 +29,7 @@ def gaussian_directed_elimination():
     st.title("Gaussian Directed Elimination")
 def gaussian_jordan_directed_elimination():
     st.title("Gaussian Jordan Directed Elimination")
-def gauss_seidel_iterative_Method():
+def gauss_seidel_iterative_method():
     st.title("Gaussian Seidel Iterative Method")
 def jacobi_iterative_method():
     st.title("Jacobi Iterative Method")
