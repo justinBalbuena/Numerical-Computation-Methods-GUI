@@ -32,7 +32,7 @@ def gauss_seidel_iterative_method():
     st.title("Gaussian Seidel Iterative Method")
 def jacobi_iterative_method():
     st.title("Jacobi Iterative Method")
-#I want to die
+#test again
 #functions for Numerical Diff
 def lagrange_interpolation():
     st.title("Lagrange Interpolation")
