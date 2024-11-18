@@ -22,7 +22,7 @@ def secant_method():
     st.title("Secant Method")
 def newton_method():
     st.title("Newton Method")
-
+#why
 #Functions for linear Algebraic
 def gaussian_directed_elimination():
     st.title("Gaussian Directed Elimination")
