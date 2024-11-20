@@ -1,36 +1,33 @@
-
-from functions.Newton_Method import newton
 import streamlit as st
+import numpy as np
+import pandas as pd
+from functions.Cramer_Rule import crammer_rule
 
-def absolute_error_method():
-    return "a"
-def relative_error_method():
-    return "b"
-def true_absolute_error_method():
-    return "c"
-def combination():
-    return "d"
+
 def run_page_4():
-    error_tolerance_methods = {
-        "Absolute Error": absolute_error_method,
-        "Relative Error": relative_error_method,
-        "True Absolute Error": true_absolute_error_method,
-        "Combination of Absolute Error and Relative Error": combination
-    }
-    st.title("Newton Method for solving non-linear")
-    newton_method_form = st.form(key="newton_method_form")
-    error_method = newton_method_form.radio("Error tolerance method", error_tolerance_methods.keys())
-    flag = error_tolerance_methods[error_method]()
+    st.title("Cramer Rule")
+    st.write("Enter the row and columns for augmented matrix")
+    st.write("For example, for a system of 2 equations with 2 variables, you would enter a 2x3 matrix.")
+    #all wrapped in a form which looks like a box on the actual website
+    matrix_form = st.form(key='matrix_form')
+    rows = matrix_form.number_input("Number of rows", min_value=1, step=1)
+    column = matrix_form.number_input("Number of column", min_value=1, step=1)
+    #3 1 4 7 -2 3 1 -5 2 0 5 10 quick numbers to test
+    user_matrix = matrix_form.text_input("Enter the Augmented Matrix (use space to divide): ")
 
-    #the first in the form
-    function = newton_method_form.text_input("Please enter a non-linear function")
-    x_guess = newton_method_form.number_input("Please enter an initial guess for x")
-    tolerance = newton_method_form.number_input("Tolerance value (no negative)", value=None, format="%f",min_value=0.0000000000000000001)
-    pressed = newton_method_form.form_submit_button("Evaluate")
-
+    pressed = matrix_form.form_submit_button("Evaluate")
     if pressed:
-         root,iterations = newton(x_guess, function, tolerance,flag)
-         if root:
-            st.write("Root Result: ", root, " Number of iterations: ", iterations)
-         else:
-            st.write("Root Not Found")
+        #I forgor but make a list out of the text input from the form
+        numbers = list(map(float,user_matrix.split()))
+        #reshapes the list to make a matrix
+        matrix_a = np.matrix(numbers).reshape(rows, column)
+
+        matrix_b = matrix_a[:, column - 1]
+        matrix_a = np.delete(matrix_a, column - 1, 1)
+        solution = crammer_rule(matrix_a, matrix_b)
+        #this is the graph looking thing in the page
+        df_a = pd.DataFrame(matrix_a)
+        df_b = pd.DataFrame(matrix_b)
+        if solution != False:
+            st.write("Matrix A: ",df_a,"Matrix B: ",df_b,"the solution is: ",solution)
+
