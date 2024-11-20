@@ -2,7 +2,7 @@ import streamlit as st
 
 from format_functions import *
 from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
-from layout_for_project4 import run_page_4
+from layout_for_project3 import run_page_3
 
 st. set_page_config(layout="wide")
 
@@ -23,7 +23,7 @@ def project2():
 
 
 def project3():
-    run_page_4()
+    run_page_3()
 
 def project4():
     st.title("Contact Page")
