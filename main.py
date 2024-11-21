@@ -2,6 +2,7 @@ import streamlit as st
 
 from format_functions import *
 from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
+from layout_for_project1 import run_page_1
 
 st. set_page_config(layout="wide")
 
@@ -12,8 +13,7 @@ def home():
 
 
 def project1():
-    st.title("Home Page")
-    st.write("Welcome to the Home Page!")
+    run_page_1()
 
 
 def project2():
