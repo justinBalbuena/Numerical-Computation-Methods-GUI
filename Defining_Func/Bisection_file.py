@@ -23,12 +23,12 @@ def Project1():
             """,
         unsafe_allow_html=True
     )
-    inputx1 = st.text_input(label="**:blue[Input for x1: (lower bound): ]**")
-    inputx2 = st.text_input(label="**:blue[Input for x2: (upper bound): ]**")
+    inputx1 = st.text_input(label="**:blue[Input for x1: ]**")
+    inputx2 = st.text_input(label="**:blue[Input for x2: ]**")
     user_tolerance = st.text_input(label="**:blue[Input for tolerance: ]**")
-    st.write(":blue[a = absolute approximate error\nb = absolute relative approximate error\nc = estimated true absolute error\nd = both the absolute approximate and estimated true absolute error]")
-    user_flag = st.selectbox(label="**:blue[Please choose a flag: ]**", options=['a', 'b', 'c', 'd'])
-    user_function = st.text_input(label="**:blue[Input for the function \n{ Example: 4*sin(x)-(sqrt(x))+log(2*x) }\n: ]**")
+    st.write(":blue[Please choose a flag: ]")
+    user_flag = st.selectbox(label="**:blue[a = absolute approximate error;\nb = absolute relative approximate error;\nc = estimated true absolute error;\nd = both the absolute approximate and estimated true absolute error;]**", options=['a', 'b', 'c', 'd'])
+    user_function = st.text_input(label="**:blue[Input for the function \n{ Example: 4 * sin(x)-(sqrt(x))+log(2*x) }\n: ]**")
     if st.button("Bisection Method"):
         if inputx1 and inputx2 and user_tolerance and user_flag and user_function:
             x1 = float(inputx1)
