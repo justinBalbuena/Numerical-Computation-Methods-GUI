@@ -12,7 +12,7 @@ def run_page_4():
     matrix_form = st.form(key='matrix_form')
     rows = matrix_form.number_input("Number of rows", min_value=1, step=1)
     column = matrix_form.number_input("Number of column", min_value=1, step=1)
-    #3 1 4 7 -2 3 1 -5 2 0 5 10 quick numbers to test
+    #3 1 4 7 -2 3 1 -5 2 0 5 10 quick numbers to test 3x4 matrix
     user_matrix = matrix_form.text_input("Enter the Augmented Matrix (use space to divide): ")
 
     pressed = matrix_form.form_submit_button("Evaluate")

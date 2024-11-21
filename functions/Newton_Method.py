@@ -7,7 +7,7 @@ def newton(x0, user_function, tolerance, flag):
     i = 0  # Initialize iteration counter
     while True:
         # Check if the current function value is zero (exact root found)
-        if function(x0).evalf() == 0:
+        if function(x0) == 0:
             return x0,i  # Return the root and number of iterations
         else:
             i += 1  # Increment iteration count
@@ -23,7 +23,7 @@ def newton(x0, user_function, tolerance, flag):
                 # Apply Newton's method formula to find next approximation
                 # Utilises  evalf() to obtain a value from the lambda function not need if using math
 
-                x1 = x0 - function(x0).evalf() / function_dx(x0)
+                x1 = x0 - function(x0) / function_dx(x0)
 
                 # Determine the error based on the selected flag
                 match flag:

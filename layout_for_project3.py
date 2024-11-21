@@ -1,4 +1,3 @@
-
 from functions.Newton_Method import newton
 import streamlit as st
 
