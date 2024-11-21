@@ -1,7 +1,6 @@
 import streamlit as st
 from format_functions import *
-from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
-from Defining_Func.Bisection_file import Project1
+from layout_for_project1 import run_page_1
 
 st. set_page_config(layout="wide")
 
@@ -11,8 +10,7 @@ def home():
     st.write("Welcome to the Home Page!")
 
 def project1():
-    from Defining_Func.Bisection_file import Project1
-    Project1()
+    run_page_1()
 
 def project2():
     st.title("About Page")
