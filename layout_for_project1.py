@@ -2,7 +2,7 @@ import streamlit as st
 from sympy import *
 from functions.Shirley.Project_1.Bisection_method import bisection_method
 
-def Project1():
+def run_page_1():
     global original_function
     st.title("Bisection method")
     st.markdown(
@@ -27,8 +27,11 @@ def Project1():
     inputx2 = st.text_input(label="**:blue[Input for x2: ]**")
     user_tolerance = st.text_input(label="**:blue[Input for tolerance: ]**")
     st.write(":blue[Please choose a flag: ]")
-    user_flag = st.selectbox(label="**:blue[a = absolute approximate error;\nb = absolute relative approximate error;\nc = estimated true absolute error;\nd = both the absolute approximate and estimated true absolute error;]**", options=['a', 'b', 'c', 'd'])
-    user_function = st.text_input(label="**:blue[Input for the function \n{ Example: 4 * sin(x)-(sqrt(x))+log(2*x) }\n: ]**")
+    user_flag = st.selectbox(
+        label="**:blue[a = absolute approximate error;\nb = absolute relative approximate error;\nc = estimated true absolute error;\nd = both the absolute approximate and estimated true absolute error;]**",
+        options=['a', 'b', 'c', 'd'])
+    user_function = st.text_input(
+        label="**:blue[Input for the function \n{ Example: 4 * sin(x)-(sqrt(x))+log(2*x) }\n: ]**")
     if st.button("Bisection Method"):
         if inputx1 and inputx2 and user_tolerance and user_flag and user_function:
             x1 = float(inputx1)
@@ -42,7 +45,8 @@ def Project1():
             except SympifyError as e:
                 print(f"Invalid function: {user_function}. Error: {e}")
                 original_function = None
-            result = bisection_method(x1,x2,tolerance,flag,original_function) #setting result equal to bisection function by
+            result = bisection_method(x1, x2, tolerance, flag,
+                                      original_function)  # setting result equal to bisection function by
             print(result)
             st.markdown(
                 f"""
@@ -51,13 +55,13 @@ def Project1():
                         color: green;
                     }}
                     </style>
-    
+
                     <h4>
                     The result of the Bisection Method is:
                     <span class="focus_highlight">{result}</span>
-    
+
                 """,
-            unsafe_allow_html=True
+                unsafe_allow_html=True
             )
     else:
         st.error("Please provide valid inputs for all fields.")
