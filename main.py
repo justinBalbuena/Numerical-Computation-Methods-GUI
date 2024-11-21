@@ -1,8 +1,7 @@
 import streamlit as st
+
 from format_functions import *
 from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
-from layout_for_project3 import run_page_3
-from layout_for_project4 import run_page_4
 
 st. set_page_config(layout="wide")
 
@@ -23,12 +22,14 @@ def project2():
 
 
 def project3():
-    #runs the function from file layout_for_project3
-    run_page_3()
+    st.title("Contact Page")
+    st.write("Get in touch with us.")
+
 
 def project4():
-    run_page_4()
-    #runs the function from file layout_for_project4
+    st.title("Contact Page")
+    st.write("Get in touch with us.")
+
 
 def project5():
     st.title("Contact Page")
