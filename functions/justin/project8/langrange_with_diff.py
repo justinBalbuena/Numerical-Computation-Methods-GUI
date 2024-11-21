@@ -103,4 +103,3 @@ cord_dict = {
 
 testval = lagrange_with_diff(cord_dict, 0.01, 'a', 'cubic')
 print(testval)
-
