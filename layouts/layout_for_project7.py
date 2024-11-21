@@ -1,6 +1,6 @@
 import streamlit as st
 from format_functions import x_y_field
-
+from functions.justin.project7 import lagrange_interpolation
 
 def run_page_7():
     st.title("Lagrange Interpolation")
