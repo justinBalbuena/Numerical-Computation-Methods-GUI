@@ -1,6 +1,7 @@
 import streamlit as st
 from page_layout.home_page import home_page
 from page_layout.bisection_page_layout import bisection_page_layout
+
 #must download streamlit option menu package 4.0
 
 #Before coding, run the file first to familiarize with what is happening and to fully understand the comments
