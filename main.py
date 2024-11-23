@@ -1,7 +1,22 @@
 import streamlit as st
+
+from page_layout.composite_simpson_page_layout import composite_simpson_page_layout
+from page_layout.golden_section_page_layout import golden_section_page_layout
 from page_layout.home_page import home_page
 from page_layout.bisection_page_layout import bisection_page_layout
-
+from page_layout.false_position_page_layout import false_position_page_layout
+from page_layout.jacobi_method_page_layout import jacobi_method_page_layout
+from page_layout.newton_op_page_layout import newton_op_page_layout
+from page_layout.secant_page_layout import secant_page_layout
+from page_layout.newton_method_page_layout import newton_method_page_layout
+from page_layout.gaussian_d_elimination_page_layout import gaussian_d_elimination_page_layout
+from page_layout.gauss_jordan_d_elimination_page_layout import gauss_jordan_d_elimination_page_layout
+from page_layout.gauss_seidel_page_layout import gauss_seidel_page_layout
+from page_layout.lagrange_interpolation_page_layout import lagrange_interpolation_page_layout
+from page_layout.trapezodial_rule_page_layout import trapezoidal_rule_page_layout
+from page_layout.two_p_f_d_page_layout import two_point_forward_page_layout
+from page_layout.three_p_c_d_page_layout import three_point_center_page_layout
+from page_layout.three_p_f_d_page_layout import three_points_forward_page_layout
 #must download streamlit option menu package 4.0
 
 #Before coding, run the file first to familiarize with what is happening and to fully understand the comments
@@ -24,49 +39,48 @@ def bisection_method():
     #this runs the file page_layout > bisection_page_layout
     bisection_page_layout()
 def false_position_method():
-    st.title("False Position Method")
+    false_position_page_layout()
 def secant_method():
-    st.title("Secant Method")
+    secant_page_layout()
 def newton_method():
-    st.title("Newton Method")
+    newton_method_page_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #Functions for linear Algebraic section on the nav bar
 def gaussian_directed_elimination():
-    st.title("Gaussian Directed Elimination")
+    gaussian_d_elimination_page_layout()
 def gaussian_jordan_directed_elimination():
-    st.title("Gaussian Jordan Directed Elimination")
+    gauss_jordan_d_elimination_page_layout()
 def gauss_seidel_iterative_method():
-    st.title("Gaussian Seidel Iterative Method")
+    gauss_seidel_page_layout()
 def jacobi_iterative_method():
-    st.title("Jacobi Iterative Method")
+    jacobi_method_page_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #functions for Numerical Differentiation section in nav bar
 def lagrange_interpolation():
-    st.title("Lagrange Interpolation")
+    lagrange_interpolation_page_layout()
 def two_point_forward_formula():
-    st.title("Two Point Forward Formula")
+    two_point_forward_page_layout()
 def three_point_center_formula():
-    st.title("Three Point Center Formula")
+    three_point_center_page_layout()
 def three_point_forward_formula():
-    st.title("Three Point Forward Formula")
+    three_points_forward_page_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #functions for Numerical Integration section in nav bar
 def trapezoidal_rule_ma():
-    st.title("Multiple Application of the Trapezoidal Rule")
+    trapezoidal_rule_page_layout()
 def simpson_rule_c():
-    st.title("Composite Simpson's Rule")
+    composite_simpson_page_layout()
 
 #-------------------------------------------------------------------------------------------------#
 
 #function for non-linear optimization section in nav bar
 def golden_section_method():
-    st.title("Golden Section Method")
+    golden_section_page_layout()
 def nl_newton_method():
-    st.title("Newton Method (with an automatic evaluation of a corresponding derivative)")
-
+    newton_op_page_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #Read this First Section
@@ -80,8 +94,8 @@ root_finding_methods = {
     "Newton Method": newton_method
 }
 linear_algebraic_methods = {
-    "Gaussian directed Elimination": gaussian_directed_elimination,
-    "Gaussian-Jordan directed Elimination": gaussian_jordan_directed_elimination,
+    "Gaussian Elimination": gaussian_directed_elimination,
+    "Gaussian-Jordan Elimination": gaussian_jordan_directed_elimination,
     "Gauss-Seidel iterative Method": gauss_seidel_iterative_method,
     "Jacobi iterative Method": jacobi_iterative_method
 }

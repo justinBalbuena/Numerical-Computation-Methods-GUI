@@ -1,7 +1,5 @@
 import streamlit as st
 
-from main import two_point_forward_formula
-
 def two_point_forward_page_layout():
     # Two-Point Forward Difference Formula
     st.title("Two-Point Forward Difference Formula")
