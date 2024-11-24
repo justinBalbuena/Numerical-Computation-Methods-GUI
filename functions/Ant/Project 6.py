@@ -1,6 +1,7 @@
 import numpy as np  # Import the NumPy library for numerical operations
 
 
+
 def sort(matrix):
     # Sort the rows of the matrix based on the absolute values of the first column
     row, column = matrix.shape
@@ -97,7 +98,15 @@ def jacobi(matrix_a, matrix_b, initial_guess, flag, tolerance=0.001):
 
 
 # Example usage
-matrix_a = np.array([[3, 1,-4, 7], [-2, 3, 1,-5], [2, 0, 5, 10]], float)
+#matrix_a = np.array([[3, 1,-4, 7], [-2, 3, 1,-5], [2, 0, 5, 10]], float)
+string = "3,1,-4,7;-2,3,1,-5;2,0,5,10"
+
+# Split the string into rows
+rows = string.split(';')
+# Split each row into elements and convert to a 2D array
+matrix_a = np.array([row.split(',') for row in rows], dtype=float)
+print(matrix_a)
+
 col = 4
 row = 3
 matrix_a = sort(matrix_a)  # Sort the matrix
@@ -107,7 +116,5 @@ matrix_a = np.delete(matrix_a, col - 1, 1)  # Remove last column from A
 initial = np.array([0, 0, 0], float)  # Initial guess for the solution
 print(matrix_a)
 # Solve using the Jacobi method
-roots = jacobi(matrix_a, matrix_b, initial, 1)
+roots = seidel(matrix_a, matrix_b, initial, 1)
 print(roots)  # Output the roots
-
-[[3, 1,-4, 7], [-2, 3, 1,-5], [2, 0, 5, 10]]
