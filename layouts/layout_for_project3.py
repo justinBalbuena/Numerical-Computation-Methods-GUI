@@ -1,4 +1,4 @@
-from functions.Ant.Newton_Method import newton
+from functions.Ant.newton_method import newton
 import streamlit as st
 
 def absolute_error_method():

@@ -1,7 +1,8 @@
 import streamlit as st
 from page_layout.error_option import error_tolerance_methods
-from project_function.bisection_method import ant_bisection_method,find_roots
+from project_function.bisection_method import ant_bisection_method
 from page_layout.convert_mathexpression import transform_math_expression
+from functions.Ant.true_root import find_roots
 def bisection_page_layout():
     st.title("Bisection Method")
     #Explain the Theorem
@@ -34,8 +35,7 @@ def bisection_page_layout():
         root = ant_bisection_method(x1,x2,function,tolerance,flag)
         true_root = find_roots(function,(x2+x1)/2)
         if root:
-            st.write("The Root of the function ",function," is: ",root)
+            st.write("The Root of the function is: ",root)
             st.write("True Value: ",true_root)
-            st.write("")
         else:
             st.write("The Root for the function could not be found!")

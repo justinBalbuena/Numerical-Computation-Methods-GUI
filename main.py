@@ -34,7 +34,7 @@ def home():
     st.write("Welcome! This is a simple GUI (Graphic User Interface) that preforms varies types of numerical methods. Please write more?")
 # -------------------------------------------------------------------------------------------------#
 
-#section for the root finding method nav bar
+#section for the root finding method nav bar. All have the similar format found in bisection method
 def bisection_method():
     #this runs the file page_layout > bisection_page_layout
     bisection_page_layout()

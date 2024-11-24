@@ -11,6 +11,7 @@ def transform_math_expression(expression):
     expression = re.sub(r'(\d+)([\^])',r'\1**',expression)
     #finds pattern with any x and ^ transforms it. So x^123131413 = x**123131413
     expression = re.sub(r'([x])([\^])',r'\1**',expression)
+    expression = re.sub(r'([)])([\^])',r'\1**',expression)
     #find pattern with r and ^ and transforms it. so e^12321132 = e**12321132
     expression = re.sub(r'([e])([\^])',r'\1**',expression)
     return expression

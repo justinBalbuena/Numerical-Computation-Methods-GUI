@@ -1,5 +1,4 @@
 from numpy import *
-from scipy.optimize import fsolve
 
 def ant_bisection_method(x1, x2,user_function, tolerance, flag):
     function = lambda x: eval(user_function)
@@ -42,7 +41,3 @@ def ant_bisection_method(x1, x2,user_function, tolerance, flag):
                     if error < tolerance and error1 < tolerance:
                         return x3  # Return if either error is within tolerance
 
-def find_roots(user_function,x0):
-    function = lambda x: eval(user_function)
-    root = fsolve(function,x0)
-    return root[0]

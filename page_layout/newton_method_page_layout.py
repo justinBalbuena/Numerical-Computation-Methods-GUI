@@ -1,5 +1,8 @@
 import streamlit as st
 
+from page_layout.error_option import error_tolerance_methods
+from functions.Ant.newton_method import newton
+
 def newton_method_page_layout():
     # Newton's Method
     st.title("Newton's Method")
@@ -11,6 +14,19 @@ def newton_method_page_layout():
 
     # Calculation Section
     st.header("Calculation", divider="blue")
+    newton_method_form = st.form(key="newton_method_form")
+    error_method = newton_method_form.radio("Error tolerance method", error_tolerance_methods.keys())
+    flag = error_tolerance_methods[error_method]()
 
-    # Results Section
-    st.header("Results", divider="blue")
+    #the first in the form
+    function = newton_method_form.text_input("Please enter a non-linear function")
+    x_guess = newton_method_form.number_input("Please enter an initial guess for x")
+    tolerance = newton_method_form.number_input("Tolerance value (no negative)", value=None, format="%f",min_value=0.0000000000000000001)
+    pressed = newton_method_form.form_submit_button("Evaluate")
+
+    if pressed:
+         root,iterations = newton(x_guess, function, tolerance,flag)
+         if root:
+            st.write("Root Result: ", root, " Number of iterations: ", iterations)
+         else:
+            st.write("Root Not Found")
