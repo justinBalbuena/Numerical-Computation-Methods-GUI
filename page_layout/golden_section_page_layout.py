@@ -11,7 +11,7 @@ def golden_section_page_layout():
 
     # Calculation Section
     st.header("Calculation", divider="blue")
-
+    points = st.number_input("Number of data points",value=None,min_value=2)
     # Results Section
     st.header("Results", divider="blue")
 

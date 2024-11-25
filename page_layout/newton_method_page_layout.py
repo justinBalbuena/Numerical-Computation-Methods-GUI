@@ -1,6 +1,6 @@
 import streamlit as st
 
-from page_layout.error_option import error_tolerance_methods
+from global_functions_and_more.error_option import error_tolerance_methods
 from functions.Ant.newton_method import newton
 
 def newton_method_page_layout():

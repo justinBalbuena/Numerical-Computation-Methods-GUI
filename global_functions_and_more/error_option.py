@@ -1,3 +1,4 @@
+#this can be use a key for a st.radio since there are function that ask for there error methods
 def absolute_error_method():
     return "a"
 def relative_error_method():

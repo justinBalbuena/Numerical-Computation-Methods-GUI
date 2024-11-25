@@ -1,8 +1,9 @@
 import streamlit as st
-from page_layout.error_option import error_tolerance_methods
+from  global_functions_and_more.error_option import error_tolerance_methods
 from project_function.bisection_method import ant_bisection_method
-from page_layout.convert_mathexpression import transform_math_expression
-from functions.Ant.true_root import find_roots
+from global_functions_and_more.convert_mathexpression import transform_math_expression
+from global_functions_and_more.true_root import find_roots
+
 def bisection_page_layout():
     st.title("Bisection Method")
     #Explain the Theorem

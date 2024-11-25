@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-from functions.Ant.Cramer_Rule import crammer_rule
+from functions.Ant.cramer_rule import crammer_rule
 
 
 def run_page_4():

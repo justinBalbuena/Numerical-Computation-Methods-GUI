@@ -17,6 +17,7 @@ from page_layout.trapezodial_rule_page_layout import trapezoidal_rule_page_layou
 from page_layout.two_p_f_d_page_layout import two_point_forward_page_layout
 from page_layout.three_p_c_d_page_layout import three_point_center_page_layout
 from page_layout.three_p_f_d_page_layout import three_points_forward_page_layout
+from page_layout.cramer_page_layout import cramer_page_layout
 #must download streamlit option menu package 4.0
 
 #Before coding, run the file first to familiarize with what is happening and to fully understand the comments
@@ -55,6 +56,8 @@ def gauss_seidel_iterative_method():
     gauss_seidel_page_layout()
 def jacobi_iterative_method():
     jacobi_method_page_layout()
+def cramer_method():
+    cramer_page_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #functions for Numerical Differentiation section in nav bar
@@ -97,7 +100,8 @@ linear_algebraic_methods = {
     "Gaussian Elimination": gaussian_directed_elimination,
     "Gaussian-Jordan Elimination": gaussian_jordan_directed_elimination,
     "Gauss-Seidel iterative Method": gauss_seidel_iterative_method,
-    "Jacobi iterative Method": jacobi_iterative_method
+    "Jacobi iterative Method": jacobi_iterative_method,
+    "Cramer's Rule":cramer_method
 }
 Numerical_diff = {
     "Lagrange Interpolation": lagrange_interpolation,

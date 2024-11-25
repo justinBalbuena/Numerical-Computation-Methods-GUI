@@ -13,5 +13,6 @@ def gauss_seidel_page_layout():
     # Calculation Section
     st.header("Calculation", divider="blue")
 
+
     # Results Section
     st.header("Results", divider="blue")
