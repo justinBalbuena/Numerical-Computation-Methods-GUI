@@ -116,5 +116,5 @@ matrix_a = np.delete(matrix_a, col - 1, 1)  # Remove last column from A
 initial = np.array([0, 0, 0], float)  # Initial guess for the solution
 print(matrix_a)
 # Solve using the Jacobi method
-roots = seidel(matrix_a, matrix_b, initial, 1)
+roots = jacobi(matrix_a, matrix_b, initial, 1)
 print(roots)  # Output the roots

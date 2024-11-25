@@ -1,7 +1,7 @@
 import streamlit as st
 
 from global_functions_and_more.error_option import error_tolerance_methods
-from functions.Ant.newton_method import newton
+from functions.Ant.newton_method import ant_newton
 
 def newton_method_page_layout():
     # Newton's Method
@@ -20,12 +20,12 @@ def newton_method_page_layout():
 
     #the first in the form
     function = newton_method_form.text_input("Please enter a non-linear function")
-    x_guess = newton_method_form.number_input("Please enter an initial guess for x")
+    x_guess = newton_method_form.number_input("Please enter an initial guess for x",value=None)
     tolerance = newton_method_form.number_input("Tolerance value (no negative)", value=None, format="%f",min_value=0.0000000000000000001)
     pressed = newton_method_form.form_submit_button("Evaluate")
 
     if pressed:
-         root,iterations = newton(x_guess, function, tolerance,flag)
+         root,iterations = ant_newton(x_guess, function, tolerance,flag)
          if root:
             st.write("Root Result: ", root, " Number of iterations: ", iterations)
          else:

@@ -1,5 +1,5 @@
 #this does not need to be used if someone has something better please notify me
-#cause I am not as confident in these function under certain circumstances
+#because I am not as confident in these function under certain circumstances
 import numpy as np  # Import the NumPy library for numerical operations
 
 

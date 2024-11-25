@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from functions.Ant.cramer_rule import crammer_rule
+from functions.Ant.cramer_rule import ant_crammer_rule
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 
 def cramer_page_layout():
@@ -21,10 +21,11 @@ def cramer_page_layout():
     display_matrix(user_matrix)
     pressed = st.button("Evaluate")
     if pressed:
-        st.header("Result", divider="blue")
+        st.header("Results", divider="blue")
         matrix_a = np.asmatrix(user_matrix)
         matrix_b = matrix_a[:,-1]
         matrix_a = np.delete(matrix_a,-1, 1)
-        results = crammer_rule(matrix_a,matrix_b)
-        st.write(results)
+        results = ant_crammer_rule(matrix_a,matrix_b)
+        for i in range(len(results)):
+            st.write(results[i])
 

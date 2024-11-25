@@ -1,5 +1,5 @@
 import numpy as np
-def crammer_rule(matrix_a,matrix_b):
+def ant_crammer_rule(matrix_a,matrix_b):
     array_solution = []
     det = round(np.linalg.det(matrix_a))
     if det == 0:

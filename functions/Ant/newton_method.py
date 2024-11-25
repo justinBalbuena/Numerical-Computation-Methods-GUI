@@ -1,7 +1,7 @@
 from sympy import *
 
 x = symbols('x')
-def newton(x0, user_function, tolerance, flag):
+def ant_newton(x0, user_function, tolerance, flag):
 
     function = lambda x: eval(user_function)
     i = 0  # Initialize iteration counter
