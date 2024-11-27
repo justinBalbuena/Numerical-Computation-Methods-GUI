@@ -56,4 +56,3 @@ def matrix_menu(m,n):
     # Create a dataframe matrix from the input
     custom_matrix = np.array(A).reshape(m,n)
     return custom_matrix
-

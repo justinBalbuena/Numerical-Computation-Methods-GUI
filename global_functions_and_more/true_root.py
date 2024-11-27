@@ -1,6 +1,6 @@
 from scipy.optimize import fsolve
 from math import *
-#without math, it will not recognize sin,cos
+#without math, it will not recognize sin,cos,tan
 #this function give you the true root of the function near a point probably more accurate then the function
 #created in class
 

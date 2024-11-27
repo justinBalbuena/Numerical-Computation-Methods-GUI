@@ -20,21 +20,21 @@ def lagrange(z, x, f):
 inpop = float(input("Please enter a number: "))
 x = [.3, .5, .7]
 f = [.404958, .824361, 1.40963]
-value = Lagrange(inpop,x,f)
-print("Using only the first 3 data points")
-print(value)
-x =[.3,.5,.7,.9]
-f = [.404958, .824361, 1.40963,2.21364]
-value = Lagrange(inpop,x,f)
-print("\nUsing only the first 4 data points")
-print(value)
-x =[.5,.7,.9,1.1]
-f = [.824361, 1.40963,2.21364,3.30458]
-value = Lagrange(inpop,x,f)
-print("\nUsing only the last 4 data points")
-print(value)
-x = [.3, .5, .7, .9, 1.1]
-f = [.404958, .824361, 1.40963,2.21364,3.30458]
-value = Lagrange(inpop,x,f)
-print("\nUsing only the given points data points")
-print(value)
+print(type(f))
+# print("Using only the first 3 data points")
+# print(value)
+# x =[.3,.5,.7,.9]
+# f = [.404958, .824361, 1.40963,2.21364]
+# value = Lagrange(inpop,x,f)
+# print("\nUsing only the first 4 data points")
+# print(value)
+# x =[.5,.7,.9,1.1]
+# f = [.824361, 1.40963,2.21364,3.30458]
+# value = Lagrange(inpop,x,f)
+# print("\nUsing only the last 4 data points")
+# print(value)
+# x = [.3, .5, .7, .9, 1.1]
+# f = [.404958, .824361, 1.40963,2.21364,3.30458]
+# value = Lagrange(inpop,x,f)
+# print("\nUsing only the given points data points")
+# print(value)

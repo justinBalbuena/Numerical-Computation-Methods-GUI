@@ -20,6 +20,7 @@ def jacobi_method_page_layout():
     error_method = st.radio("Error tolerance method",error_tolerance_methods_iter.keys())
     flag = error_tolerance_methods_iter[error_method]()
     tolerance = st.number_input("Enter the tolerance value",value=None,format="%f",min_value=0.0000000000000000001)
+    st.header("Input Augmented Matrix")
     col = st.columns(2)
     with col[0]:
         m = st.number_input('Number of rows (m)', min_value=1, value=2, key='m')
@@ -34,9 +35,8 @@ def jacobi_method_page_layout():
         matrix_a = np.delete(matrix_a, -1, 1)
         initial_guess = np.zeros(n-1, dtype=float)
         results =  ant_jacobi(matrix_a, matrix_b, initial_guess,flag,tolerance)
-        st.write(results)
-        # if result:
-        #      st.write("The result of the Jacobi method is:", result)
-        # else:
-        #      st.write("The Jacobi method failed to converge!")
+        if results:
+             st.write("The result of the Jacobi method is:", results)
+        else:
+             st.write("The Jacobi method failed to converge!")
 
