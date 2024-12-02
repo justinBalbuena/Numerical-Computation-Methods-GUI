@@ -1,5 +1,5 @@
 import streamlit as st
-from global_functions_and_more.error_option_iterative import error_tolerance_methods_iter
+from global_functions_and_more.error_option import error_tolerance_methods_iter
 from global_functions_and_more.matrix_showcase import matrix_menu,display_matrix
 import numpy as np
 from functions.Ant.gauss_seidel_method import ant_seidel
