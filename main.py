@@ -1,23 +1,23 @@
 import streamlit as st
 
-from page_layout.composite_simpson_page_layout import composite_simpson_page_layout
-from page_layout.golden_section_page_layout import golden_section_page_layout
+from page_layout.numercal_integration.composite_simpson_page_layout import composite_simpson_page_layout
+from page_layout.non_linear_optimization.golden_section_page_layout import golden_section_page_layout
 from page_layout.home_page import home_page
-from page_layout.bisection_page_layout import bisection_page_layout
-from page_layout.false_position_page_layout import false_position_page_layout
-from page_layout.jacobi_method_page_layout import jacobi_method_page_layout
-from page_layout.newton_op_page_layout import newton_op_page_layout
-from page_layout.secant_page_layout import secant_page_layout
-from page_layout.newton_method_page_layout import newton_method_page_layout
-from page_layout.gaussian_d_elimination_page_layout import gaussian_d_elimination_page_layout
-from page_layout.gauss_jordan_d_elimination_page_layout import gauss_jordan_d_elimination_page_layout
-from page_layout.gauss_seidel_page_layout import gauss_seidel_page_layout
-from page_layout.lagrange_interpolation_page_layout import lagrange_interpolation_page_layout
-from page_layout.trapezodial_rule_page_layout import trapezoidal_rule_page_layout
-from page_layout.two_p_f_d_page_layout import two_point_forward_page_layout
-from page_layout.three_p_c_d_page_layout import three_point_center_page_layout
-from page_layout.three_p_f_d_page_layout import three_points_forward_page_layout
-from page_layout.cramer_page_layout import cramer_page_layout
+from page_layout.root_finding_methods.bisection_page_layout import bisection_page_layout
+from page_layout.root_finding_methods.false_position_page_layout import false_position_page_layout
+from page_layout.linear_algebraic_equations.jacobi_method_page_layout import jacobi_method_page_layout
+from page_layout.non_linear_optimization.newton_op_page_layout import newton_op_page_layout
+from page_layout.root_finding_methods.secant_page_layout import secant_page_layout
+from page_layout.root_finding_methods.newton_method_page_layout import newton_method_page_layout
+from page_layout.linear_algebraic_equations.gaussian_d_elimination_page_layout import gaussian_d_elimination_page_layout
+from page_layout.linear_algebraic_equations.gauss_jordan_d_elimination_page_layout import gauss_jordan_d_elimination_page_layout
+from page_layout.linear_algebraic_equations.gauss_seidel_page_layout import gauss_seidel_page_layout
+from page_layout.numerical_differentiation.lagrange_interpolation_page_layout import lagrange_interpolation_page_layout
+from page_layout.numercal_integration.trapezodial_rule_page_layout import trapezoidal_rule_page_layout
+from page_layout.numerical_differentiation.two_p_f_d_page_layout import two_point_forward_page_layout
+from page_layout.numerical_differentiation.three_p_c_d_page_layout import three_point_center_page_layout
+from page_layout.numerical_differentiation.three_p_f_d_page_layout import three_points_forward_page_layout
+from page_layout.linear_algebraic_equations.cramer_page_layout import cramer_page_layout
 #must download streamlit option menu package 4.0
 
 #Before coding, run the file first to familiarize with what is happening and to fully understand the comments
@@ -82,6 +82,7 @@ def simpson_rule_c():
 #function for non-linear optimization section in nav bar
 def golden_section_method():
     golden_section_page_layout()
+
 def nl_newton_method():
     newton_op_page_layout()
 #-------------------------------------------------------------------------------------------------#
