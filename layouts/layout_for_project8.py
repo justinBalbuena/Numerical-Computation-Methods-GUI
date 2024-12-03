@@ -1,5 +1,5 @@
 import streamlit as st
-from format_functions import x_y_field
+from global_functions_and_more.format_functions import x_y_field
 from functions.melvin.lagrange_diff import *
 
 
