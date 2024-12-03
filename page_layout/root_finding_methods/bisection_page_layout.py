@@ -32,7 +32,7 @@ def bisection_page_layout():
     #Result Section
     if pressed:
         st.header("Results",divider="blue")
-        function= transform_math_expression(function)
+        function = transform_math_expression(function)
         root = ant_bisection_method(x1,x2,function,tolerance,flag)
         true_root = find_roots(function,(x2+x1)/2)
         if root:

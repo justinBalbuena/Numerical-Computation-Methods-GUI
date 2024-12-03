@@ -39,7 +39,7 @@ def false_position(x0, x1, choice, user_function, delta):
                 x0 = x2
             match choice:
                 # compares using the absolute approximate error
-                case 'absolute_approximate':
+                case 'a':
                     epsilon = math.fabs(x - x2)
                     if epsilon < delta:
                         return x2, iteration
@@ -47,7 +47,7 @@ def false_position(x0, x1, choice, user_function, delta):
                         # updates x
                         x = x2
                 # compares using the absolute relative approximate error
-                case 'absolute_relative':
+                case 'b':
                     epsilon = math.fabs(x - x2) / math.fabs(x2)
                     if epsilon < delta:
                         return x2, iteration
@@ -55,48 +55,48 @@ def false_position(x0, x1, choice, user_function, delta):
                         # updates x
                         x = x2
                 # compares using the true absolute error
-                case 'true_absolute_error':
+                case 'c':
                     epsilon = math.fabs(user_function(x2))
                     if epsilon < delta:
                         return x2, iteration
                 # compares using a Conjunction of an absolute approximate error and an estimated true absolute error
-                case 'conjunction':
+                case 'd':
                     if math.fabs(x - x2) < delta and math.fabs(user_function(x2)) < delta:
                         return x2, iteration
                     else:
                         # updates x
                         x = x2
 
+if __name__ == "__main__":
+    while True:
+        # Gets the equation from the user
+        user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3): ")
+        x = lambda x: eval(user_input)
 
-while True:
-    # Gets the equation from the user
-    user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3): ")
-    x = lambda x: eval(user_input)
+        # Gets the bounds
+        left_bound = float(input("Enter your left bound value: "))
+        right_bound = float(input("Enter your right bound value: "))
 
-    # Gets the bounds
-    left_bound = float(input("Enter your left bound value: "))
-    right_bound = float(input("Enter your right bound value: "))
-
-    # Gets the stopping criteria
-    stopping_criteria = input("Enter 'absolute_approximate', 'absolute_relative', 'true_absolute_error', 'conjunction' "
-                              "for the stopping criteria that you want: ")
-    delta = float(input("Enter your threshold value: "))
-    match stopping_criteria:
-        case 'absolute_approximate':
-            print("Value, Iterations")
-            print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'absolute_relative':
-            print("Value, Iterations")
-            print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'true_absolute_error':
-            print("Value, Iterations")
-            print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'conjunction':
-            print("Value, Iterations")
-            print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case _:
-            print("Type in an appropriate stopping criteria\n")
+        # Gets the stopping criteria
+        stopping_criteria = input("Enter 'absolute_approximate', 'absolute_relative', 'true_absolute_error', 'conjunction' "
+                                  "for the stopping criteria that you want: ")
+        delta = float(input("Enter your threshold value: "))
+        match stopping_criteria:
+            case 'absolute_approximate':
+                print("Value, Iterations")
+                print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'absolute_relative':
+                print("Value, Iterations")
+                print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'true_absolute_error':
+                print("Value, Iterations")
+                print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'conjunction':
+                print("Value, Iterations")
+                print(false_position(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case _:
+                print("Type in an appropriate stopping criteria\n")
