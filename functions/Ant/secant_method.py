@@ -1,5 +1,7 @@
-def secant_method(x0, x1, tolerance, flag, function):
+from math import *
+def secant_method(x0, x1, tolerance, flag, user_function):
     """Perform the Secant Method to find the root of a function."""
+    function = lambda x: eval(user_function)
     function_x0 = function(x0)  # Evaluate function at x0
     function_x1 = function(x1)  # Evaluate function at x1
     i = 0  # Iteration counter
@@ -7,7 +9,8 @@ def secant_method(x0, x1, tolerance, flag, function):
     # Ensure x0 has the greater function value
     if abs(function_x0) < abs(function_x1):
         x0, x1 = x1, x0
-
+        function_x0 = function(x0)
+        function_x1 = function(x1)
     while True:
         i += 1  # Increment iteration count
         # Compute the next approximation using the formula
@@ -33,5 +36,5 @@ def secant_method(x0, x1, tolerance, flag, function):
         if flag == "d":  # Conjunction of absolute and true errors
             error = abs(x0 - x1)
             error1 = abs(x1 - x0) / abs(x1)
-            if error < tolerance or error1 < tolerance:
+            if error < tolerance and error1 < tolerance:
                 return x1
