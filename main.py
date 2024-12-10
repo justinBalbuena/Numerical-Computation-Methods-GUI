@@ -14,9 +14,7 @@ from page_layout.linear_algebraic_equations.gauss_jordan_d_elimination_page_layo
 from page_layout.linear_algebraic_equations.gauss_seidel_page_layout import gauss_seidel_page_layout
 from page_layout.numerical_differentiation.lagrange_interpolation_page_layout import lagrange_interpolation_page_layout
 from page_layout.numercal_integration.trapezodial_rule_page_layout import trapezoidal_rule_page_layout
-from page_layout.numerical_differentiation.two_p_f_d_page_layout import two_point_forward_page_layout
-from page_layout.numerical_differentiation.three_p_c_d_page_layout import three_point_center_page_layout
-from page_layout.numerical_differentiation.three_p_f_d_page_layout import three_points_forward_page_layout
+from page_layout.numerical_differentiation.lagrange_variations import lagrange_variations_layout
 from page_layout.linear_algebraic_equations.cramer_page_layout import cramer_page_layout
 #must download streamlit option menu package 4.0
 
@@ -63,12 +61,8 @@ def cramer_method():
 #functions for Numerical Differentiation section in nav bar
 def lagrange_interpolation():
     lagrange_interpolation_page_layout()
-def two_point_forward_formula():
-    two_point_forward_page_layout()
-def three_point_center_formula():
-    three_point_center_page_layout()
-def three_point_forward_formula():
-    three_points_forward_page_layout()
+def lagrange_variations():
+    lagrange_variations_layout()
 #-------------------------------------------------------------------------------------------------#
 
 #functions for Numerical Integration section in nav bar
@@ -106,9 +100,7 @@ linear_algebraic_methods = {
 }
 Numerical_diff = {
     "Lagrange Interpolation": lagrange_interpolation,
-    "Two point forward difference formula": two_point_forward_formula,
-    "Three point center difference formula": three_point_center_formula,
-    "Three point forward difference formula": three_point_forward_formula,
+    "Lagrange Variations": lagrange_variations
 }
 Numerical_int = {
     "Trapezoidal rule (multiple application)" : trapezoidal_rule_ma,

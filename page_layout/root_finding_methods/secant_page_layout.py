@@ -27,6 +27,7 @@ def secant_page_layout():
     tolerance = secant_form.number_input("Enter tolerance", value=None, format="%f",
                                                  min_value=0.0000000000000000001)
     button = secant_form.form_submit_button("Evaluate")
+
     if button:
         # Results Section
         st.header("Results", divider="blue")
