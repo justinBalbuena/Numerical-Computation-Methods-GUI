@@ -27,13 +27,14 @@ def secant_page_layout():
     tolerance = secant_form.number_input("Enter tolerance", value=None, format="%f",
                                                  min_value=0.0000000000000000001)
     button = secant_form.form_submit_button("Evaluate")
+
     if button:
         # Results Section
         st.header("Results", divider="blue")
         function = transform_math_expression(function)
-        x1 = ant_FP_value_x1(x0,function)
+        true_root = find_roots(function, x0)
+        x1 = ant_FP_value_x1(true_root,function)
         root = secant_method(x0,x1,tolerance,flag,function)
-        true_root = find_roots(function,root)
         st.write("The root found is: ",root)
         st.write("The true root is: ",true_root)
 

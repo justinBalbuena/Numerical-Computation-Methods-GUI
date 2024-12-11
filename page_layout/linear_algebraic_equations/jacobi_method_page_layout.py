@@ -35,7 +35,7 @@ def jacobi_method_page_layout():
         matrix_a = np.delete(matrix_a, -1, 1)
         initial_guess = np.zeros(n-1, dtype=float)
         results =  ant_jacobi(matrix_a, matrix_b, initial_guess,flag,tolerance)
-        if results:
+        if results is not None:
              st.write("The result of the Jacobi method is:", results)
         else:
              st.write("The Jacobi method failed to converge!")

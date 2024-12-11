@@ -34,52 +34,52 @@ def bisect(x1, x2, choice, math_function, delta):
 
             match choice:
                 # compares using the absolute approximate error
-                case 'absolute_approximate':
+                case 'a':
                     epsilon = math.fabs(x1 - x2)
                     if epsilon < delta:
                         return x3, iteration
                 # compares using the absolute relative approximate error
-                case 'absolute_relative':
+                case 'b':
                     epsilon = math.fabs(x3 - x4) / math.fabs(x3)
                     if epsilon < delta:
                         return x3, iteration
                 # compares using the true absolute error
-                case 'true_absolute_error':
+                case 'c':
                     epsilon = math.fabs(math_function(x3))
                     if epsilon < delta:
                         return x3, iteration
                 # compares using a Conjunction of an absolute approximate error and an estimated true absolute error
-                case 'conjunction':
+                case 'd':
                     if math.fabs(x1 - x2) < delta and math.fabs(math_function(x3)) < delta:
                         return x3, iteration
 
+if __name__ == "__main__":
+    while True:
+        # Gets the equation from the user
+        user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3): ")
+        x = lambda x: eval(user_input)
 
-while True:
-    # Gets the equation from the user
-    user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3): ")
-    x = lambda x: eval(user_input)
+        # Gets the bounds
+        left_bound = float(input("Enter your left bound value: "))
+        right_bound = float(input("Enter your right bound value: "))
 
-    # Gets the bounds
-    left_bound = float(input("Enter your left bound value: "))
-    right_bound = float(input("Enter your right bound value: "))
-
-    # Gets the stopping criteria
-    stopping_criteria = input("Enter 'absolute_approximate', 'absolute_relative', 'true_absolute_error', 'conjunction' "
-                              "for the stopping criteria that you want ")
-    delta = float(input("Enter your threshold value: "))
-    match stopping_criteria:
-        case 'absolute_approximate':
-            print("Value, Iterations")
-            print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'absolute_relative':
-            print("Value, Iterations")
-            print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'true_absolute_error':
-            print("Value, Iterations")
-            print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
-            print("\n")
-        case 'conjunction':
-            print("Value, Iterations")
-            print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
+        # Gets the stopping criteria
+        stopping_criteria = input("Enter 'absolute_approximate', 'absolute_relative', 'true_absolute_error', 'conjunction' "
+                                  "for the stopping criteria that you want ")
+        delta = float(input("Enter your threshold value: "))
+        match stopping_criteria:
+            case 'absolute_approximate':
+                print("Value, Iterations")
+                print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'absolute_relative':
+                print("Value, Iterations")
+                print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'true_absolute_error':
+                print("Value, Iterations")
+                print(bisect(left_bound, right_bound, stopping_criteria, x, delta))
+                print("\n")
+            case 'conjunction':
+                print("Value, Iterations")
+                print(bisect(left_bound, right_bound, stopping_criteria, x, delta))

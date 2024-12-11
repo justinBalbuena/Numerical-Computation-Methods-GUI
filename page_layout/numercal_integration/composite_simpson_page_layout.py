@@ -1,10 +1,21 @@
 import streamlit as st
-from format_functions import x_y_field
-from functions.melvin.lagrange_diff import *
+from global_functions_and_more.format_functions import x_y_field
+from functions.melvin.compsimpson import composimp
 
 
-def run_page_8():
-    st.title("Numerical Differentiation")
+def composite_simpson_page_layout():
+    # Composite Simpson's Rule
+    st.title("Composite Simpson's Rule")
+    # Theorem section
+    st.header("Theorem", divider="blue")
+    st.write("More accurate estimate of an integral is obtained if a higher-order polynomial is used to connect the points. The formulas that result from taking the integrals under such polynomials are called Simpson’s rules")
+    st.write("Divide the interval into n sub-intervals and apply Simpson’s Rule on each consecutive pair of sub-intervals. Note that n must be even")
+    # Calculation Section
+
+    st.header("Calculation", divider="blue")
+
+
+
     st.markdown(
         f"""
                 <style>
@@ -18,44 +29,27 @@ def run_page_8():
                     }}
                 </style>
                 <div class="size_box">
-                    <h4 class="text">Please select what type of rule you would like to use </h4>
+                    <h4 class="text">Please be sure to have an even sized input </h4>
                 </div>
             """,
         unsafe_allow_html=True
     )
-    options = ["2 points forward", "3 points forward", "3 points centered"]
 
-    # Create the selection box
-    selected_option = st.selectbox("Choose an option:", options)
-
-    # Display the selected option
-    st.write(f"You selected: {selected_option}")
-
-    choices = {
-        "2 points forward": "a",
-        "3 points forward": "b",
-        "3 points centered": "c"
-    }
 
     # error
-    usererror = st.text_input(label="**:green[Error Value]**: ", key="users_error_value")
+    hval = st.text_input(label="**:green[Enter H value]**: ", key="users_h_value")
 
     # Number of columns input
     columns = st.text_input(label="**:green[Columns]**: ", key="amount_of_columns")
 
-    wanted_value = st.text_input(label="**:green[Wanted Value to Differentiate]**: ", key="users_wanted_value")
+
     # Only create fields if `columns` is a valid integer
-    if columns and columns.isdigit() and wanted_value and usererror:
+    if columns and columns.isdigit() and hval:
         columns = int(columns)
         st.session_state["columns"] = columns  # Save the columns count in session state
 
-        st.session_state["diffform"] = choices[selected_option]
-
-        usererr = float(usererror)
-        st.session_state["usererror"] = usererr
-
-        wanted_value = float(wanted_value)
-        st.session_state["wanted_value"] = wanted_value
+        hv = float(hval)
+        st.session_state["hval"] = hv
 
         # Dynamically generate x and y input fields based on the number of columns
         x_y_field(columns)
@@ -69,9 +63,11 @@ def run_page_8():
 
             x_arr = [float(x) for x in st.session_state["x_arr"]]
             y_arr = [float(y) for y in st.session_state["y_arr"]]
-            wanted = st.session_state["wanted_value"]
-            inerror = st.session_state["usererror"]
-            diffch = st.session_state["diffform"]
+            #wanted = st.session_state["wanted_value"]
+
+            inh = st.session_state["hval"]
+            # Results Section
+            st.header("Results", divider="blue")
             st.markdown(
                 f"""
                         <style>
@@ -81,10 +77,11 @@ def run_page_8():
                         </style>
 
                         <h4>
-                            The differentiated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{numdef(x_arr, y_arr, inerror, diffch, 1, wanted)}</span>
+                            The integrated value is: <span class="focus_highlight">{composimp(inh,x_arr,y_arr)}</span>
                         </h4>
 
                     """,
                 unsafe_allow_html=True
             )
+
 
