@@ -69,6 +69,7 @@ def lagrange_variations_layout():
 
             x_arr = [float(x) for x in st.session_state["x_arr"]]
             y_arr = [float(y) for y in st.session_state["y_arr"]]
+
             wanted = st.session_state["wanted_value"]
             inerror = st.session_state["usererror"]
             diffch = st.session_state["diffform"]
