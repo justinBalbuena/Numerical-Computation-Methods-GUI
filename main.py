@@ -10,7 +10,6 @@ from page_layout.non_linear_optimization.newton_op_page_layout import newton_op_
 from page_layout.root_finding_methods.secant_page_layout import secant_page_layout
 from page_layout.root_finding_methods.newton_method_page_layout import newton_method_page_layout
 from page_layout.linear_algebraic_equations.gaussian_d_elimination_page_layout import gaussian_d_elimination_page_layout
-from page_layout.linear_algebraic_equations.gauss_jordan_d_elimination_page_layout import gauss_jordan_d_elimination_page_layout
 from page_layout.linear_algebraic_equations.gauss_seidel_page_layout import gauss_seidel_page_layout
 from page_layout.numerical_differentiation.lagrange_interpolation_page_layout import lagrange_interpolation_page_layout
 from page_layout.numercal_integration.trapezodial_rule_page_layout import trapezoidal_rule_page_layout
@@ -48,8 +47,6 @@ def newton_method():
 #Functions for linear Algebraic section on the nav bar
 def gaussian_directed_elimination():
     gaussian_d_elimination_page_layout()
-def gaussian_jordan_directed_elimination():
-    gauss_jordan_d_elimination_page_layout()
 def gauss_seidel_iterative_method():
     gauss_seidel_page_layout()
 def jacobi_iterative_method():
@@ -93,7 +90,6 @@ root_finding_methods = {
 }
 linear_algebraic_methods = {
     "Gaussian Elimination": gaussian_directed_elimination,
-    "Gaussian-Jordan Elimination": gaussian_jordan_directed_elimination,
     "Gauss-Seidel iterative Method": gauss_seidel_iterative_method,
     "Jacobi iterative Method": jacobi_iterative_method,
     "Cramer's Rule":cramer_method
