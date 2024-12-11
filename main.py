@@ -30,7 +30,8 @@ st.set_page_config(layout="wide")
 #function for the home section
 def home():
     st.title("Overview")
-    st.write("Welcome! This is a simple GUI (Graphic User Interface) that preforms varies types of numerical methods. Please write more?")
+    st.write("Welcome! This is a simple GUI (Graphic User Interface) that preforms various types of numerical "
+             "methods such as the Bisection Method, Lagrange Interpolation, Golden Section Method and more! Please write more")
 # -------------------------------------------------------------------------------------------------#
 
 #section for the root finding method nav bar. All have the similar format found in bisection method
