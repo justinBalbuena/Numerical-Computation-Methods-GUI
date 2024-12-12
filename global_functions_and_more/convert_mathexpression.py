@@ -17,3 +17,9 @@ def transform_math_expression(expression):
     return expression
 # Purpose of this is to make it easier for the user to input mathematical expression like 2x instead of 2*x
 # In the case where you have used sympy where e constant is E instead of e this could be used to make it consistent throughout
+def sympy_transform_math_expression(expression):
+    #finds a case where e in the string and converts to E since sympy does not recognize
+    #e as the constant,but it does for E
+    expression = re.sub(r'([e])',r'E',expression)
+
+    return expression

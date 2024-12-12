@@ -11,7 +11,7 @@ def cramer_page_layout():
 
     st.header("Calculation", divider="blue")
     st.subheader('Matrix Input')
-    st.caption('Please enter the size of the augmented matrix.')
+    st.write(label='green:Please enter the size of the augmented matrix.**')
     col = st.columns(2)
     with col[0]:
         m = st.number_input('Number of rows (m)', min_value=1, value=2, key='m')

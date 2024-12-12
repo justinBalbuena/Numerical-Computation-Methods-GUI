@@ -26,8 +26,7 @@ def secant_page_layout():
     function = secant_form.text_input("Please enter a function Ex. 4*sin(x)-(sqrt(x))+log(2*x)")
     x0 = secant_form.number_input("Please enter x0", value=None, format="%f")
     x1 = secant_form.number_input("Please enter x1", value=None, format="%f")
-    tolerance = secant_form.number_input("Enter the tolerance", value=None, format="%f",
-                                                 min_value=0.0000000000000000001)
+    tolerance = secant_form.number_input("Enter the tolerance", value=None, format="%f",min_value=0.0000000000000000001)
     button = secant_form.form_submit_button("Evaluate")
 
     if button:
