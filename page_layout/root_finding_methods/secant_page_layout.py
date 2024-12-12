@@ -2,8 +2,8 @@ import streamlit as st
 from sympy import *
 
 from functions.Ant.false_position_method import ant_FP_value_x1
-from functions.Shirley.Project_2 import Secant_and_false_position
-from functions.Shirley.Project_2.Secant_and_false_position import secant_method
+from functions.Shirley.Project_2 import Secant_method
+from functions.Shirley.Project_2.Secant_method import secant_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
 from global_functions_and_more.true_root import find_roots

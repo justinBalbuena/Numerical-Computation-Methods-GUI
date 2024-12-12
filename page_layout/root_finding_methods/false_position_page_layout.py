@@ -1,5 +1,4 @@
 import streamlit as st
-
 from global_functions_and_more.true_root import find_roots
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods

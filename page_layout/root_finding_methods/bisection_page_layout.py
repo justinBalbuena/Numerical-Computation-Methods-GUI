@@ -1,6 +1,7 @@
 import streamlit as st
-from  global_functions_and_more.error_option import error_tolerance_methods
-from project_function.bisection_method import ant_bisection_method
+from global_functions_and_more.error_option import error_tolerance_methods
+# from project_function.bisection_method import ant_bisection_method
+from functions.Shirley.Project_1.Bisection_method import bisection_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.true_root import find_roots
 
@@ -33,7 +34,7 @@ def bisection_page_layout():
     if pressed:
         st.header("Results",divider="blue")
         function = transform_math_expression(function)
-        root = ant_bisection_method(x1,x2,function,tolerance,flag)
+        root = bisection_method(x1,x2,function,tolerance,flag)
         true_root = find_roots(function,(x2+x1)/2)
         if root:
             st.write("The Root of the function is: ",root)
