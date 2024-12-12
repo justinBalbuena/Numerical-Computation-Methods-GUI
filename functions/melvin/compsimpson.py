@@ -1,52 +1,89 @@
-def lagranged(x1,x,y):
+def count_decimal_places(number):
+    """
 
-    m = len(x) #here we get the length of the array
-    n = m-1
-    userx = x1 #take the users value
-    insum = 0 #initialize the the sum value
+    :param number:
+    :return: the amount of numbers after the decimal point
+    """
+    # Convert to string
+    number_str = str(number)
 
-    for i in range(n+1):
-        l = 1 #here is where the lagrange value is initialized
-
-        for j in range(n+1):
-
-            if i != j:
-                l *= (userx - x[j])/(x[i] - x[j]) # here is where we perform the interpolation calculatoins
-                # we mutltiply the current lagrangian value by the current value divided by x[i] where its
-                #not equal to j
-
-
-        insum += y[i] * l
-
-    return insum
+    # Split at the decimal point and count the length of the decimal part
+    if '.' in number_str:
+        decimal_part = number_str.split(".")[1]
+        return len(decimal_part)
+    else:
+        return 0  # No decimal part
 
 
-def composimp(h,x,y):
-    #h here being the segment size
-    # x and y are arrays of values
-    length = len(x) # length of array
-    a =1
-    numsum = 0
-    numsum2 = 0
+def lagrange_interpolation(values, wanted_value):
+    """
 
-    # here we find the sum of tabulated values and we start from the first index all the way to the second to last number
-    for i in range(1,int((length/2))): # This is the length of the array divided by 2 and then subtracted by 1
-        xindex = x.index(round(a+(h*(2*i)),1)) # finding the index we need to go to in the y array
-        numsum += y[xindex] #this
+    :param values: dictionary of x and matching f(x) values
+    :param wanted_value: the value that the user wants to interpolate
+    :return: the interpolated value
+    """
+    sorted_values = dict(sorted(values.items()))
+    x_vals = list(sorted_values.keys())
+    y_vals = list(sorted_values.values())
+    x_vals.sort()
+    y_vals.sort()
 
-    for i in range(1,int(length/2)+1): # here we find the numbers that are odd values ad multiply them by 4
-        xindex = x.index(round(a+(h*((2*i)-1)),1))
-        numsum2 += y[xindex] #this
+    x_vals = x_vals[0:3]
+    y_vals = y_vals[0:3]
+
+    interpolated_value = 0
+
+    for i in range(len(x_vals)):
+        lagrange = 1.0
+        for j in range(len(x_vals)):
+            if j != i:
+                lagrange *= (wanted_value - x_vals[j]) / (x_vals[i] - x_vals[j])
+        interpolated_value += lagrange * y_vals[i]
+    return interpolated_value
 
 
-    numsum *= 2 # first loop
-    numsum2 *= 4 # second loop
+def composite_simpsons(values, h, n):
+    """
 
-    #y[-1] is actually b in this case
-    numsum += y[0] + y[-1] + numsum2
+    :param values: dictionary of x and matching f(x) values
+    :param h: length of sub intervals
+    :param n: amount of sub intervals
+    :return:
+    """
+    if n % 2 != 0:
+        return "Composite Simpsons rule requires an even about of intervals"
 
-    numsum *= h/3
+    values_copy = values.copy()
+    sorted_values = dict(sorted(values.items()))
+    x_vals = list(sorted_values.keys())
 
-    return numsum
+    i = x_vals[0]
 
+    # Keeps track of how many numbers after the decimal point are
+    # important because of a floating point error in this solution
+    # when calculating x_vals based off of the distance between x values
+    amount_of_decimals = count_decimal_places(i + h)
+    counter = 0
+    while i < x_vals[-1]:
+        if i not in values_copy:
+            values_copy[i] = lagrange_interpolation(values, i)
+
+        i = i + h
+        i = round(i, amount_of_decimals)
+        counter = counter + 1
+    # After this while loop, every value that should have its output, based on the steps between x values
+    # have been found are catalogued
+
+    sorted_values = dict(sorted(values_copy.items()))
+    x_vals = list(sorted_values.keys())
+    y_vals = list(sorted_values.values())
+
+    summation = y_vals[0] + y_vals[len(y_vals) - 1]
+    for i in range(1, len(x_vals) - 1):
+        if i % 2 == 0:
+            summation += 2 * y_vals[i]
+        else:
+            summation += 4 * y_vals[i]
+
+    return (h / 3) * summation
 

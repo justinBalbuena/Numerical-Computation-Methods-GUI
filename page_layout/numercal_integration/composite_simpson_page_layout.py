@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.compsimpson import composimp
+from functions.melvin.compsimpson import composite_simpsons
 
 
 def composite_simpson_page_layout():
@@ -39,14 +39,20 @@ def composite_simpson_page_layout():
     # error
     hval = st.text_input(label="**:green[Enter H value]**: ", key="users_h_value")
 
+    nvals = st.text_input(label="**:green[Enter number of intervals]**: ", key="users_n_values")
     # Number of columns input
     columns = st.text_input(label="**:green[Columns]**: ", key="amount_of_columns")
+
+
 
 
     # Only create fields if `columns` is a valid integer
     if columns and columns.isdigit() and hval:
         columns = int(columns)
         st.session_state["columns"] = columns  # Save the columns count in session state
+
+        nvals = int(nvals)
+        st.session_state["nvals"] = nvals
 
         hv = float(hval)
         st.session_state["hval"] = hv
@@ -63,8 +69,10 @@ def composite_simpson_page_layout():
 
             x_arr = [float(x) for x in st.session_state["x_arr"]]
             y_arr = [float(y) for y in st.session_state["y_arr"]]
-            #wanted = st.session_state["wanted_value"]
 
+            res = {x_arr[i]: y_arr[i] for i in range(len(x_arr))}
+            #wanted = st.session_state["wanted_value"]
+            usern = st.session_state["nvals"]
             inh = st.session_state["hval"]
             # Results Section
             st.header("Results", divider="blue")
@@ -77,7 +85,7 @@ def composite_simpson_page_layout():
                         </style>
 
                         <h4>
-                            The integrated value is: <span class="focus_highlight">{composimp(inh,x_arr,y_arr)}</span>
+                            The integrated value is: <span class="focus_highlight">{composite_simpsons(res,inh,usern)}</span>
                         </h4>
 
                     """,

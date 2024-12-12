@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.trapezoidrule import trapezoidal
+from functions.melvin.trapezoidrule import trapezoidal_rule
 
 
 def trapezoidal_rule_page_layout():
@@ -65,6 +65,8 @@ def trapezoidal_rule_page_layout():
             y_arr = [float(y) for y in st.session_state["y_arr"]]
             #wanted = st.session_state["wanted_value"]
 
+            res = {x_arr[i]:y_arr[i] for i in range(len(x_arr))}
+
             inh = st.session_state["hval"]
             # Results Section
             st.header("Results", divider="blue")
@@ -77,7 +79,7 @@ def trapezoidal_rule_page_layout():
                         </style>
 
                         <h4>
-                            The integrated value is: <span class="focus_highlight">{trapezoidal(inh,x_arr,y_arr)}</span>
+                            The integrated value is: <span class="focus_highlight">{trapezoidal_rule(res,inh)}</span>
                         </h4>
 
                     """,
