@@ -1,6 +1,5 @@
 import streamlit as st
 from sympy import *
-
 from functions.Shirley.Project_2.Secant_method import secant_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
