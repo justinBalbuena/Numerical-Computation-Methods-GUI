@@ -1,8 +1,10 @@
 import streamlit as st
+from sympy import * #using this library for the function
+
 from global_functions_and_more.true_root import find_roots
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
-from functions.Ant.false_position_method import ant_falsePosition_method,ant_FP_value_x1
+from functions.Shirley.Project_2.False_position import false_position_method
 
 def false_position_page_layout():
     # False Position Method
@@ -19,19 +21,20 @@ def false_position_page_layout():
     flag = error_tolerance_methods[error_method]()
 
     function = false_position_form.text_input("Enter a function Ex. 2sin(x)-e^x/4-1")
-    x0 = false_position_form.number_input("Enter a number reasonable close to the root",value=None,format="%f")
+    x0 = false_position_form.number_input("Enter a x0",value=None,format="%f")
+    x1 = false_position_form.number_input("Enter a x1t",value=None,format="%f")
     tolerance = false_position_form.number_input("Enter tolerance",value=None,format="%f",min_value=0.0000000000000000001)
     button = false_position_form.form_submit_button("Evaluate")
 
     if button:
         # Results Section
         st.header("Results", divider="blue")
-        function = transform_math_expression(function)
-        x1 = ant_FP_value_x1(x0,function)
-        root = ant_falsePosition_method(x0,x1,tolerance,flag,function)
+        x = symbols('x')  # x is an unknown value
+        original_function = lambdify(x, function)  # taking in the user function as a lambda function
+        root,count = false_position_method(x0,x1,tolerance,flag,original_function)
         if root:
-             st.write("The Root of the function is: ", root[0])
-             st.write("The amount of iterations taken is: ", root[1])
+             st.write("The Root of the function is: ", root)
+             st.write("The amount of iterations taken is: ", count)
              true_root = find_roots(function,x0)
              st.write("True Value: ", true_root)
         else:

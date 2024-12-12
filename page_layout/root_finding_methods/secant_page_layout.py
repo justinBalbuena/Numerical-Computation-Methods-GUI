@@ -1,8 +1,6 @@
 import streamlit as st
 from sympy import *
 
-from functions.Ant.false_position_method import ant_FP_value_x1
-from functions.Shirley.Project_2 import Secant_method
 from functions.Shirley.Project_2.Secant_method import secant_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
@@ -11,7 +9,6 @@ from global_functions_and_more.true_root import find_roots
 def secant_page_layout():
     # Secant Method
     st.title("Secant Method")
-
     # Theorem section
     st.header("Theorem", divider="blue")
     st.write("Requires two initial estimates of x: x0 , x1. However, because f(x) is not required to change signs between estimates, it is not classified as a bracketing method")
@@ -33,10 +30,6 @@ def secant_page_layout():
     if button:
         # Results Section
         st.header("Results", divider="blue")
-        # function = transform_math_expression(function)
-        # true_root = find_roots(function, x0)
-        # x1 = ant_FP_value_x1(true_root,function)
-        # function = transform_math_expression(function)
         x = symbols('x')
         original_function = lambdify(x, function)
         root,count = secant_method(x0,x1,tolerance,flag,original_function)

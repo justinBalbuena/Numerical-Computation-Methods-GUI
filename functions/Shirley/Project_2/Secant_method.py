@@ -12,7 +12,7 @@ def secant_method(x0, x1, tolerance, flag, original_function):  #my secant funct
        x1 = x2 #setting x1 equal to x2
        if original_function(x2) == 0: #if function(x2) is 0 then the root is found
            root = x2 #setting x2 equal to the root
-           return root, count #returning x2
+           return x2, count #returning x2
        else:
            root = x1 #setting x1 equal to the root for more clarity
            if flag == "a":  # if the user choose to do absolute approximate error, continue
