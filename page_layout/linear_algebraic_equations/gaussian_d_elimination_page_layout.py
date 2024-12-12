@@ -4,12 +4,12 @@ from functions.Kristina.gauss import gauss_with_pivot
 
 def gaussian_d_elimination_page_layout():
     st.title("Gaussian Elimination")
-    st.header("Theorem")
+    st.header("Theorem", divider="blue")
     st.write("Extension of the method of trivial elimination to large sets of equations by developing a systematic algorithm to eliminate unknowns and to back substitute.")
     st.write("The Gaussian elimination method is based on subtracting the 1st equation from the ith equation to make the transformed coefficients in the first column equal to 0.")
     st.write("As a result, a matrix of the system becomes upper triangular.")
 
-    st.header("Calculation")
+    st.header("Calculation", divider="blue")
 
     # Input the size of the matrix
     matrix_size = st.number_input("Enter the size of the square matrix (e.g., 2, 3, 4):", min_value=2, step=1)

@@ -58,7 +58,7 @@ def lagrange_interpolation_page_layout():
                 f"""
                         <style>
                         .focus_highlight {{
-                            color: green;
+                            color: #60b4f0;
                         }}
                         </style>
 
