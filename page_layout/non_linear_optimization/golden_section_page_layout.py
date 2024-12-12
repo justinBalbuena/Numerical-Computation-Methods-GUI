@@ -1,8 +1,8 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import extrema_types
 from functions.justin.project10.golden_section import golden_section
-
 
 def golden_section_page_layout():
     # Golden Section Method
@@ -34,3 +34,12 @@ def golden_section_page_layout():
         st.write(f"The x value of the local extrema is: **:blue[{results[0]}]**")
         st.write(f"The y value of the local extrema is: **:blue[{results[1]}]**")
         st.write(f"The amount of iterations it took was: **:blue[{results[2]}]**")
+
+        #Graph Section
+        fig, ax = plt.subplots()
+        ax.scatter(results[0], results[1], color='red')
+        ax.set_xlabel('X values')
+        ax.set_ylabel('Y values')
+        ax.set_title('Local Extrema:')
+        ax.legend()
+        st.pyplot(fig)
