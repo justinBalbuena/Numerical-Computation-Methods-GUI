@@ -1,5 +1,8 @@
+import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
+from sympy import lambdify, symbols, Symbol
+
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import extrema_types
 from functions.justin.project10.golden_section import golden_section
@@ -35,9 +38,21 @@ def golden_section_page_layout():
         st.write(f"The y value of the local extrema is: **:blue[{results[1]}]**")
         st.write(f"The amount of iterations it took was: **:blue[{results[2]}]**")
 
-        #Graph Section
+        #Graph Implementation
         fig, ax = plt.subplots()
-        ax.scatter(results[0], results[1], color='red')
+
+        #generating x-values for plotting
+        x = Symbol('x')
+        user_function = lambdify(x, function)
+        x_values = np.linspace(left_bracket, right_bracket, 500)
+        y_values = [user_function(x) for x in x_values]
+
+        #plotting the function
+        ax.plot(x_values, y_values, color='blue', label='Function')
+        #plotting the extrema
+        ax.scatter(results[0], results[1], color='red', label="Extrema")
+        plt.xlim(-10, 10)
+        plt.ylim(-10, 10)
         ax.set_xlabel('X values')
         ax.set_ylabel('Y values')
         ax.set_title('Local Extrema:')
