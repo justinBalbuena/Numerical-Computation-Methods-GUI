@@ -1,12 +1,9 @@
 import streamlit as st
-from sympy import *
 
-from functions.Shirley.Project_2 import Secant_and_false_position
-from functions.Shirley.Project_2.Secant_and_false_position import secant_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
 from global_functions_and_more.true_root import find_roots
-
+from functions.Ant.root_method.secant_method import secant_method
 def secant_page_layout():
     # Secant Method
     st.title("Secant Method")
@@ -31,13 +28,10 @@ def secant_page_layout():
     if button:
         # Results Section
         st.header("Results", divider="blue")
-        x = symbols('x')
         function = transform_math_expression(function)
-        original_function = lambdify(x, function)
-        root,count = secant_method(x0,x1,tolerance,flag,original_function)
+        root = secant_method(x0, x1, tolerance,flag,function)
         if root:
              st.write("The Root of the function is: ", root)
-             st.write("The amount of iterations taken is: ", count)
              true_root = find_roots(function,x0)
              st.write("True Value: ", true_root)
         else:

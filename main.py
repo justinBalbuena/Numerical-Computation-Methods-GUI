@@ -120,7 +120,7 @@ homepage = home_page()
 if homepage == "Home":
     home()
 if homepage == "Root-Finding Methods":
-    r_f_m = st.selectbox("Select Root Finding Method",root_finding_methods.keys())
+    r_f_m = st.selectbox("Select root_method",root_finding_methods.keys())
     root_finding_methods[r_f_m]()
 if homepage == "Linear Algebraic Equations":
     l_a_e = st.selectbox("Select Numerical linear algebraic equations Method",linear_algebraic_methods.keys())

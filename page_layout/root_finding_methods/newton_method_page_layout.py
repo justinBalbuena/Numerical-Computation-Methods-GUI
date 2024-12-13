@@ -2,7 +2,7 @@ import streamlit as st
 
 from global_functions_and_more.convert_mathexpression import transform_math_expression,sympy_transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
-from functions.Ant.newton_method import ant_newton
+from functions.Ant.root_method.newton_method import ant_newton
 
 def newton_method_page_layout():
     # Newton's Method

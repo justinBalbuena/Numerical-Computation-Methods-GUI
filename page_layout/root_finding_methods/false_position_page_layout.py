@@ -3,7 +3,7 @@ import streamlit as st
 from global_functions_and_more.true_root import find_roots
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
-from functions.Ant.false_position_method import ant_falsePosition_method,ant_FP_value_x1
+from functions.Ant.root_method.false_position_method import ant_falsePosition_method,ant_FP_value_x1
 
 def false_position_page_layout():
     # False Position Method

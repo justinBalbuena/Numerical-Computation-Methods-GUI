@@ -1,6 +1,6 @@
 import streamlit as st
 from  global_functions_and_more.error_option import error_tolerance_methods
-from project_function.bisection_method import ant_bisection_method
+from functions.Ant.root_method.bisection import ant_bisection_method
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.true_root import find_roots
 
