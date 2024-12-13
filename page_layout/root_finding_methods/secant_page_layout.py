@@ -38,6 +38,7 @@ def secant_page_layout():
         # x1 = ant_FP_value_x1(true_root,function)
         # function = transform_math_expression(function)
         x = symbols('x')
+        function = transform_math_expression(function)
         original_function = lambdify(x, function)
         root,count = secant_method(x0,x1,tolerance,flag,original_function)
         if root:
