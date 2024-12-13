@@ -1,7 +1,7 @@
 import numpy as np
 import streamlit as st
 import matplotlib.pyplot as plt
-from sympy import lambdify, symbols, Symbol
+from sympy import *
 
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import extrema_types
@@ -32,7 +32,7 @@ def golden_section_page_layout():
         # Results Section
         st.header("Results", divider="blue")
 
-        function = transform_math_expression(function)
+        function = transform_math_expression(function, 1)
         results = golden_section(left_bracket, right_bracket, function, flag, tolerance)
         st.write(f"The x value of the local extrema is: **:blue[{results[0]}]**")
         st.write(f"The y value of the local extrema is: **:blue[{results[1]}]**")
