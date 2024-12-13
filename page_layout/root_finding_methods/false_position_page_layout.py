@@ -37,3 +37,5 @@ def false_position_page_layout():
              st.write("True Value: ", true_root)
         else:
             st.write("The root could not be found!")
+#input is a string
+#output is a float

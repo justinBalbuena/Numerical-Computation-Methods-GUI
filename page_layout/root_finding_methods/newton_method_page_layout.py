@@ -33,3 +33,5 @@ def newton_method_page_layout():
             st.write("Root Result: ", root, " Number of iterations: ", iterations)
          else:
             st.write("Root Not Found")
+#input is string
+#output is a float

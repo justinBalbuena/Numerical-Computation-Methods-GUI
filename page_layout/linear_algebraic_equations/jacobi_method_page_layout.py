@@ -19,7 +19,7 @@ def jacobi_method_page_layout():
     st.header("Calculation", divider="blue")
     error_method = st.radio("Error tolerance method",error_tolerance_methods_iter.keys())
     flag = error_tolerance_methods_iter[error_method]()
-    tolerance = st.number_input("Enter the tolerance value",value=None,format="%f",min_value=0.0000000000000000001)
+    tolerance = st.number_input("Enter the tolerance value",value=.0001,format="%f",min_value=0.0000000000000000001)
     st.header("Input Augmented Matrix")
     col = st.columns(2)
     with col[0]:
@@ -29,7 +29,7 @@ def jacobi_method_page_layout():
     user_matrix = matrix_menu(m, n)
     display_matrix(user_matrix)
     pressed = st.button("Evaluate")
-    if pressed:
+    if pressed and n == m+1:
         matrix_a = user_matrix
         matrix_b = user_matrix[:,-1]
         matrix_a = np.delete(matrix_a, -1, 1)
@@ -39,4 +39,5 @@ def jacobi_method_page_layout():
              st.write("The result of the Jacobi method is:", results)
         else:
              st.write("The Jacobi method failed to converge!")
-
+    else:
+        st.write("it is an augmented matrix so column should be one more for the constants")

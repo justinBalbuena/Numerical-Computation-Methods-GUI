@@ -40,3 +40,5 @@ def bisection_page_layout():
             st.write("True Value: ",true_root)
         else:
             st.write("The Root for the function could not be found!")
+#input is a string
+#output is a float
