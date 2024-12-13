@@ -32,6 +32,7 @@ def secant_page_layout():
         # Results Section
         st.header("Results", divider="blue")
         x = symbols('x')
+        function = transform_math_expression(function)
         original_function = lambdify(x, function)
         root,count = secant_method(x0,x1,tolerance,flag,original_function)
         if root:
