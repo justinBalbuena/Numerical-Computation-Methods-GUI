@@ -32,7 +32,6 @@ def false_position_page_layout():
         root = ant_falsePosition_method(x0,x1,tolerance,flag,function)
         if root:
              st.write("The Root of the function is: ", root[0])
-             st.write("The amount of iterations taken is: ", root[1])
              true_root = find_roots(function,x0)
              st.write("True Value: ", true_root)
         else:

@@ -37,7 +37,7 @@ def gauss_seidel_page_layout():
             initial_guess = np.zeros(n-1, dtype=float)
             results =  ant_seidel(matrix_a, matrix_b, initial_guess,flag,tolerance)
             if results is not None:
-                 st.write("The result of the Jacobi method is:", results)
+                 st.write("The result of the seidel method is:", results)
             else:
                  st.write("The Jacobi method failed to converge!")
         else:
