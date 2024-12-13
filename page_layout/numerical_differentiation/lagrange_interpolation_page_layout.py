@@ -1,7 +1,7 @@
 from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
 from global_functions_and_more.format_functions import x_y_field
 import streamlit as st
-
+from functions.Shirley.Project_7.Lagrange import lagrange
 
 def lagrange_interpolation_page_layout():
     # Lagrange Interpolation
@@ -38,8 +38,8 @@ def lagrange_interpolation_page_layout():
         columns = int(columns)
         st.session_state["columns"] = columns  # Save the columns count in session state
 
-        wanted_value = float(wanted_value)
-        st.session_state["wanted_value"] = wanted_value
+        z = float(wanted_value)
+        st.session_state["wanted_value"] = z
 
         # Dynamically generate x and y input fields based on the number of columns
         x_y_field(columns)
@@ -51,8 +51,8 @@ def lagrange_interpolation_page_layout():
             st.session_state["y_arr"] = [st.session_state.get(f"input_field_{i}", "") for i in
                                          range(columns + 1, 2 * columns + 1)]
 
-            x_arr = [float(x) for x in st.session_state["x_arr"]]
-            y_arr = [float(y) for y in st.session_state["y_arr"]]
+            x = [float(x) for x in st.session_state["x_arr"]]
+            f = [float(y) for y in st.session_state["y_arr"]]
 
             st.markdown(
                 f"""
@@ -63,7 +63,7 @@ def lagrange_interpolation_page_layout():
                         </style>
 
                         <h4>
-                            The interpolated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{lagrange_interpolation(x_arr, y_arr, st.session_state["wanted_value"])}</span>
+                            The interpolated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{lagrange(x, f, st.session_state["wanted_value"])}</span>
                         </h4>
 
                     """,

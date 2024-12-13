@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 
-#from functions.Ant.jacobi_method import ant_jacobi
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 from global_functions_and_more.error_option import error_tolerance_methods_iter
 from functions.Shirley.Project_6 import Jacobi

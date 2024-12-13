@@ -1,4 +1,4 @@
-def lagrange(z, x, f):
+def lagrange(x, f, z):
     interpolated_value = 0  # initialize interpolated value to 0
     n = len(x) - 1  # number of data points - 1
     for i in range(n + 1):  # iterate over each data point

@@ -1,90 +1,98 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.lagrange_diff import numdef
-
+from functions.Shirley.Project_8 import lagrange_variation
+from functions.Shirley.Project_8.lagrange_variation import lagrange_variation
 
 def lagrange_variations_layout():
     st.title("Numerical Differentiation")
     st.markdown(
-        f"""
-                <style>
-                    .size_box {{
-                        justify-content: center;
-                        align-items: center;
-                    }}
-                    .text {{
-                        padding-top: 16px;
-                        padding-bottom: 16px;
-                    }}
-                </style>
-                <div class="size_box">
-                    <h4 class="text">Please select what type of rule you would like to use </h4>
-                </div>
-            """,
+        """
+        <style>
+            .size_box {
+                justify-content: center;
+                align-items: center;
+            }
+            .text {
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+        </style>
+        <div class="size_box">
+            <h4 class="text">Please select what type of rule you would like to use</h4>
+        </div>
+        """,
         unsafe_allow_html=True
     )
+
+    # Options for derivative methods
     options = ["2 points forward", "3 points forward", "3 points centered"]
-
-    # Create the selection box
     selected_option = st.selectbox("Choose an option:", options)
-
-    # Display the selected option
     st.write(f"You selected: {selected_option}")
 
-    choices = {
+    # Mapping options to flags
+    flag = {
         "2 points forward": "a",
         "3 points forward": "b",
         "3 points centered": "c"
     }
+    selected_flag = flag[selected_option]
 
-    # error
-    usererror = st.text_input(label="**:green[Error Tolerance Value]**: ", key="users_error_value")
+    # User inputs
+    usererror = st.text_input(label="**:green[Error Tolerance Value]**:", key="users_error_value")
+    columns = st.text_input(label="**:green[Columns]**:", key="amount_of_columns")
+    val = st.text_input(label="**:green[Wanted Value to Differentiate]**:", key="users_wanted_value")
 
-    # Number of columns input
-    columns = st.text_input(label="**:green[Columns]**: ", key="amount_of_columns")
+    # Ensure inputs are valid
+    if columns and columns.isdigit() and val and usererror:
+        try:
+            columns = int(columns)
+            h = float(usererror)
+            val = float(val)
 
-    wanted_value = st.text_input(label="**:green[Wanted Value to Differentiate]**: ", key="users_wanted_value")
-    # Only create fields if `columns` is a valid integer
-    if columns and columns.isdigit() and wanted_value and usererror:
-        columns = int(columns)
-        st.session_state["columns"] = columns  # Save the columns count in session state
+            st.session_state["columns"] = columns
+            st.session_state["usererror"] = h
+            st.session_state["wanted_value"] = val
+            st.session_state["diffform"] = selected_flag
 
-        st.session_state["diffform"] = choices[selected_option]
+            # Generate input fields for x and y values
+            x_y_field(columns)
 
-        usererr = float(usererror)
-        st.session_state["usererror"] = usererr
+            if st.button("Input Values"):
+                x_arr = [st.session_state.get(f"input_field_{i}", "") for i in range(1, columns + 1)]
+                y_arr = [st.session_state.get(f"input_field_{i}", "") for i in range(columns + 1, 2 * columns + 1)]
 
-        wanted_value = float(wanted_value)
-        st.session_state["wanted_value"] = wanted_value
+                # Convert to float and validate
+                try:
+                    x_arr = [float(x) for x in x_arr]
+                    y_arr = [float(y) for y in y_arr]
 
-        # Dynamically generate x and y input fields based on the number of columns
-        x_y_field(columns)
+                    # Ensure arrays match in length
+                    if len(x_arr) != len(y_arr):
+                        st.error("The lengths of x and y arrays must match.")
+                        return
 
-        # Collect values in x and y arrays when the "Input Values" button is clicked
-        if st.button("Input Values"):
-            st.session_state["x_arr"] = [st.session_state.get(f"input_field_{i}", "") for i in
-                                         range(1, columns + 1)]
-            st.session_state["y_arr"] = [st.session_state.get(f"input_field_{i}", "") for i in
-                                         range(columns + 1, 2 * columns + 1)]
+                    # Call the Lagrange variation function
+                    derivative = lagrange_variation(val, x_arr, y_arr, selected_flag, h)
 
-            x_arr = [float(x) for x in st.session_state["x_arr"]]
-            y_arr = [float(y) for y in st.session_state["y_arr"]]
-
-            wanted = st.session_state["wanted_value"]
-            inerror = st.session_state["usererror"]
-            diffch = st.session_state["diffform"]
-            st.markdown(
-                f"""
+                    # Display the result
+                    st.markdown(
+                        f"""
                         <style>
                         .focus_highlight {{
                             color: green;
                         }}
                         </style>
-
                         <h4>
-                            The differentiated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{numdef(x_arr, y_arr, inerror, diffch, 1, wanted)}</span>
+                            The differentiated value at <span class="focus_highlight">{val}</span> is: <span class="focus_highlight">{derivative}</span>
                         </h4>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
-                    """,
-                unsafe_allow_html=True
-            )
+                except ValueError as e:
+                    st.error(f"Error converting inputs: {e}")
+
+        except ValueError as e:
+            st.error(f"Error parsing inputs: {e}")
+    else:
+        st.warning("Please provide valid inputs for all fields.")
