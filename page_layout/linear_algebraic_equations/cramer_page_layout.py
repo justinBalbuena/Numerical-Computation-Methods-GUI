@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
-from functions.Ant.cramer_rule import ant_crammer_rule
+#from functions.Ant.cramer_rule import ant_crammer_rule
+from functions.Shirley.Project_4.Cramers_rule import Cramers_rule
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 
 def cramer_page_layout():
@@ -22,10 +23,23 @@ def cramer_page_layout():
     pressed = st.button("Evaluate")
     if pressed:
         st.header("Results", divider="blue")
-        matrix_a = np.asmatrix(user_matrix)
-        matrix_b = matrix_a[:,-1]
-        matrix_a = np.delete(matrix_a,-1, 1)
-        results = ant_crammer_rule(matrix_a,matrix_b)
-        for i in range(len(results)):
-            st.write(results[i])
-
+        matrix_a = np.array(user_matrix, dtype=float)
+        # Validate dimensions
+        if matrix_a.shape[1] != matrix_a.shape[0] + 1:
+            st.error("The input must be an augmented matrix with one more column than rows.")
+            return
+        # Separate A and b matrices
+        A = matrix_a[:, :-1]
+        b = matrix_a[:, -1]
+        # Check if determinant of A is zero
+        if np.linalg.det(A) == 0:
+            st.error("The determinant of matrix A is zero. The system has no unique solution.")
+            return
+            # Solve using Cramer's Rule
+        results = Cramers_rule(matrix_a)
+            # Display results
+        st.write("Solution Vector")
+        for i, val in enumerate(results):
+            st.write(f"X[{i+1}] = {val:.4f}")
+        else:
+            "Sorry no solution"

@@ -4,6 +4,7 @@ from global_functions_and_more.error_option import error_tolerance_methods_iter
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 from functions.Shirley.Project_6.Gauss_Seidel import gauss_seidel, diag_dominant, transform_dd
 
+
 def gauss_seidel_page_layout():
     # Gauss-Seidel Iterative Method
     st.title("Gauss-Seidel Iterative Method")
