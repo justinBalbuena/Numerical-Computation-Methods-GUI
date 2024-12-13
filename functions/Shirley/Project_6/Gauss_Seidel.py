@@ -14,20 +14,20 @@ def gauss_seidel(A_matrix, b, x, flag, tolerance):
                     x[i] -= A_matrix[i, j] * x[j]  # Update x[i]
             x[i] /= A_matrix[i, i]  # Divide by the diagonal element
         # Compute error based on the stopping criterion
-        if flag == 0:  # Mean Absolute Error (MAE)
+        if flag == 'a':  # Mean Absolute Error (MAE)
             errors = abs(x - old_x)
             error = np.mean(errors)
-        elif flag == 1:  # Root Mean Square Error (RMSE)
+        elif flag == 'b':  # Root Mean Square Error (RMSE)
             errors = (x - old_x) ** 2
             error = np.sqrt(np.mean(errors))
-        elif flag == 2:  # True Mean Absolute Error (True MAE)
+        elif flag == 'c':  # True Mean Absolute Error (True MAE)
             errors = abs(np.dot(A_matrix, x) - b)
             error = np.mean(errors)
-        elif flag == 3:  # True Root Mean Square Error (True RMSE)
+        elif flag == 'd':  # True Root Mean Square Error (True RMSE)
             errors = (np.dot(A_matrix, x) - b) ** 2
             error = np.sqrt(np.mean(errors))
         else:
-            raise ValueError("Invalid stopping criterion. Please choose between 0 and 3.")
+            print("Invalid stopping criterion. Please choose between 0 and 3.")
         old_x = np.copy(x)  # Update old_x with the current solution
     return x  # Return the computed solution
 
