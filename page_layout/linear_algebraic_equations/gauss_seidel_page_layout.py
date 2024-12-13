@@ -2,7 +2,7 @@ import streamlit as st
 from global_functions_and_more.error_option import error_tolerance_methods_iter
 from global_functions_and_more.matrix_showcase import matrix_menu,display_matrix
 import numpy as np
-from functions.Ant.gauss_seidel_method import ant_seidel
+from functions.Ant.linear_algebraic.gauss_seidel_method import ant_seidel
 
 def gauss_seidel_page_layout():
     # Gauss-Seidel Iterative Method

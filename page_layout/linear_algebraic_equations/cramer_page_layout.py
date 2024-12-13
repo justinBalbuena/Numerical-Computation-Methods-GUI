@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from functions.Ant.cramer_rule import ant_crammer_rule
+from functions.Ant.linear_algebraic.cramer_rule import ant_crammer_rule
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 
 def cramer_page_layout():
