@@ -1,6 +1,6 @@
 import streamlit as st
 from sympy import Matrix
-from functions.Kristina.gauss import gauss_with_pivot
+from functions.Shirley.Project_5.Gaussian_elimation import gaussian
 
 def gaussian_d_elimination_page_layout():
     st.title("Gaussian Elimination")
@@ -8,7 +8,6 @@ def gaussian_d_elimination_page_layout():
     st.write("Extension of the method of trivial elimination to large sets of equations by developing a systematic algorithm to eliminate unknowns and to back substitute.")
     st.write("The Gaussian elimination method is based on subtracting the 1st equation from the ith equation to make the transformed coefficients in the first column equal to 0.")
     st.write("As a result, a matrix of the system becomes upper triangular.")
-
     st.header("Calculation", divider="blue")
 
     # Input the size of the matrix
@@ -35,7 +34,7 @@ def gaussian_d_elimination_page_layout():
                     constants_col = Matrix(constants)
 
                     augmented_matrix = matrix.col_insert(matrix_size, constants_col)
-                    solution = gauss_with_pivot(augmented_matrix)
+                    solution = gaussian(augmented_matrix)
 
                     st.header("Results")
                     if solution:
