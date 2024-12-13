@@ -5,7 +5,7 @@ from sympy import lambdify, symbols, Symbol
 
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import extrema_types
-from functions.justin.project10.golden_section import golden_section
+from functions.Ant.non_linear_optimize.golden_section import golden_section_method
 
 def golden_section_page_layout():
     # Golden Section Method
@@ -33,10 +33,11 @@ def golden_section_page_layout():
         st.header("Results", divider="blue")
 
         function = transform_math_expression(function)
-        results = golden_section(left_bracket, right_bracket, function, flag, tolerance)
+        results = golden_section_method(left_bracket, right_bracket, function, tolerance,flag)
         st.write(f"The x value of the local extrema is: **:blue[{results[0]}]**")
-        st.write(f"The y value of the local extrema is: **:blue[{results[1]}]**")
-        st.write(f"The amount of iterations it took was: **:blue[{results[2]}]**")
+        user_function = lambdify(Symbol('x'), function)
+        f_x = float(user_function(results[0]))
+        st.write(f"The y value of the local extrema is: **:blue[{f_x}]**")
 
         #Graph Implementation
         fig, ax = plt.subplots()
@@ -50,7 +51,7 @@ def golden_section_page_layout():
         #plotting the function
         ax.plot(x_values, y_values, color='blue', label='Function')
         #plotting the extrema
-        ax.scatter(results[0], results[1], color='red', label="Extrema")
+        ax.scatter(results[0], f_x, color='red', label="Extrema")
         plt.xlim(-10, 10)
         plt.ylim(-10, 10)
         ax.set_xlabel('X values')

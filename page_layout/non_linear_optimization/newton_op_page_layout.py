@@ -2,7 +2,7 @@ import numpy as np
 import streamlit as st
 from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import extrema_types
-from functions.justin.project10.newtons_for_extrema import newtons_for_extrema
+from functions.Ant.non_linear_optimize.newton_method import newton_method_min_max
 import matplotlib.pyplot as plt
 from sympy import lambdify, symbols, Symbol
 
@@ -28,17 +28,19 @@ def newton_op_page_layout():
         st.header("Results", divider="blue")
 
         function = transform_math_expression(function)
-        results = newtons_for_extrema(x0_val, tolerance, function)
+        results = newton_method_min_max(x0_val, function, tolerance)
         st.write(f"The x value of the local extrema is: **:blue[{results[0]}]**")
-        st.write(f"The y value of the local extrema is: **:blue[{results[1]}]**")
-        st.write(f"The amount of iterations it took was: **:blue[{results[2]}]**")
+        user_function = lambdify(symbols("x"), function)
+        f_x = user_function(results[0])
+        st.write(f"The y value of the local extrema is: **:blue[{f_x}]**")
+
         #Graph Implementation
         fig, ax = plt.subplots()
 
         #generating x-values for plotting
         x = Symbol('x')
         user_function = lambdify(x, function)
-        x_values = newtons_for_extrema(x0_val,tolerance,function)
+        x_values = newton_method_min_max(x0_val,function,tolerance)
         leftx = min(x_values)-2
         rightx = max(x_values)+2
         x_values = np.linspace(leftx,rightx,500)
@@ -47,7 +49,7 @@ def newton_op_page_layout():
         #plotting the function
         ax.plot(x_values, y_values, color='blue', label='Function')
         #plotting the extrema
-        ax.scatter(results[0], results[1], color='red', label="Extrema")
+        ax.scatter(results[0], f_x, color='red', label="Extrema")
         plt.xlim(-10, 10)
         plt.ylim(-10, 10)
         ax.set_xlabel('X values')
