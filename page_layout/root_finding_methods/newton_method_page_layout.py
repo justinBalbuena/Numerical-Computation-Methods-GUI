@@ -11,6 +11,7 @@ def newton_method_page_layout():
     st.write("may not converge on some occasions")
     # Theorem section
     st.header("Theorem", divider="blue")
+    st.write("If f(x) is a real, continuously differentiable function and f'(x) != 0 at the initial guess x0, then Newton's Method converges to a root of f(x) = 0 near x0 provided x0 is sufficiently close to the actual root.")
 
     # Calculation Section
     st.header("Calculation", divider="blue")
