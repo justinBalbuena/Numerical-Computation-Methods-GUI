@@ -37,13 +37,13 @@ def secant_page_layout():
         # x1 = ant_FP_value_x1(true_root,function)
         # function = transform_math_expression(function)
         x = symbols('x')
-        function_sympy = transform_math_expression(function, 1)
+        function_sympy = transform_math_expression(function)
         function_norm = transform_math_expression(function)
         root,count = secant_method(x0,x1,tolerance,flag,function_sympy)
         if root:
              st.write("The Root of the function is: ", root)
              st.write("The amount of iterations taken is: ", count)
-             true_root = find_roots_sympy(function,x0)
+             true_root = find_roots_sympy(function_sympy,x0)
              st.write("True Value: ", true_root)
         else:
             st.write("The root could not be found!")
