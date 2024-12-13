@@ -1,7 +1,7 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
 from functions.melvin.lagrange_diff import numdef
-
+from functions.Ant.numerical_diff.points_numerical import PtsFwdAndCenter
 
 def lagrange_variations_layout():
     st.title("Numerical Differentiation")
@@ -82,7 +82,7 @@ def lagrange_variations_layout():
                         </style>
 
                         <h4>
-                            The differentiated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{numdef(x_arr, y_arr, inerror, diffch, 1, wanted)}</span>
+                            The differentiated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{PtsFwdAndCenter(wanted_value,x_arr, y_arr, inerror, diffch, "Cubic")}</span>
                         </h4>
 
                     """,

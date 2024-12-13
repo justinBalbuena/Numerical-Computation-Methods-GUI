@@ -1,4 +1,4 @@
-from functions.justin.project7.lagrange_interpolation import lagrange_interpolation
+from functions.Ant.numerical_diff.lagrange_interpolation import Lagrange
 from global_functions_and_more.format_functions import x_y_field
 import streamlit as st
 
@@ -63,7 +63,7 @@ def lagrange_interpolation_page_layout():
                         </style>
 
                         <h4>
-                            The interpolated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{lagrange_interpolation(x_arr, y_arr, st.session_state["wanted_value"])}</span>
+                            The interpolated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{Lagrange(st.session_state["wanted_value"],x_arr, y_arr)}</span>
                         </h4>
 
                     """,
