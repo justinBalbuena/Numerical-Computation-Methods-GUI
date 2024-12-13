@@ -43,9 +43,11 @@ def golden_section_page_layout():
 
         #generating x-values for plotting
         x = Symbol('x')
+        function = function.replace('E', '2.718281828459045')
         user_function = lambdify(x, function)
-        x_values = np.linspace(left_bracket, right_bracket, 500)
+        x_values = np.linspace(left_bracket- 5, right_bracket + 5, 500)
         y_values = [user_function(x) for x in x_values]
+        print(x_values)
 
         #plotting the function
         ax.plot(x_values, y_values, color='blue', label='Function')

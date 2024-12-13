@@ -1,6 +1,6 @@
 import re
 #watch https://www.youtube.com/watch?v=K8L6KVGG-7o to have a better understanding in case you need to modify something
-def transform_math_expression(expression):
+def transform_math_expression(expression, sympy_verif=0):
     #finds the pattern \d+ any digit and x like 2x and then replaces it with 2*x
     expression = re.sub(r'(\d+)([x])',r'\1*x',expression)
     #finds the pattern any digit and then replaces it with the digit * sin
@@ -14,7 +14,8 @@ def transform_math_expression(expression):
     expression = re.sub(r'([)])([\^])',r'\1**',expression)
     #find pattern with r and ^ and transforms it. so e^12321132 = e**12321132
     expression = re.sub(r'([e])([\^])', r'\1**', expression)
-    expression = re.sub(r'\be\b', "2.71828182845905", expression)
+    if sympy_verif == 1:
+        expression = re.sub(r'([e])', r'E', expression)
     return expression
 # Purpose of this is to make it easier for the user to input mathematical expression like 2x instead of 2*x
 # In the case where you have used sympy where e constant is E instead of e this could be used to make it consistent throughout

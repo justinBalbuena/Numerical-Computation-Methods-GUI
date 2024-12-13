@@ -1,10 +1,9 @@
 import numpy as np
 import streamlit as st
 from global_functions_and_more.convert_mathexpression import transform_math_expression
-from global_functions_and_more.error_option import extrema_types
 from functions.justin.project10.newtons_for_extrema import newtons_for_extrema
 import matplotlib.pyplot as plt
-from sympy import lambdify, symbols, Symbol
+from sympy import *
 
 def newton_op_page_layout():
     # Newton’s Method for Optimization
@@ -39,10 +38,14 @@ def newton_op_page_layout():
         x = Symbol('x')
         user_function = lambdify(x, function)
         x_values = newtons_for_extrema(x0_val,tolerance,function)
+
+        function = function.replace('E', '2.718281828459045')
+        user_function = lambdify(x, function)
         leftx = min(x_values)-2
         rightx = max(x_values)+2
         x_values = np.linspace(leftx,rightx,500)
         y_values = [user_function(x) for x in x_values]
+
 
         #plotting the function
         ax.plot(x_values, y_values, color='blue', label='Function')
