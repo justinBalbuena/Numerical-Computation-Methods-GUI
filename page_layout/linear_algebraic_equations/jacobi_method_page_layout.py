@@ -29,15 +29,16 @@ def jacobi_method_page_layout():
     user_matrix = matrix_menu(m, n)
     display_matrix(user_matrix)
     pressed = st.button("Evaluate")
-    if pressed and n == m+1:
-        matrix_a = user_matrix
-        matrix_b = user_matrix[:,-1]
-        matrix_a = np.delete(matrix_a, -1, 1)
-        initial_guess = np.zeros(n-1, dtype=float)
-        results =  ant_jacobi(matrix_a, matrix_b, initial_guess,flag,tolerance)
-        if results is not None:
-             st.write("The result of the Jacobi method is:", results)
+    if pressed:
+        if n == m+1:
+            matrix_a = user_matrix
+            matrix_b = user_matrix[:,-1]
+            matrix_a = np.delete(matrix_a, -1, 1)
+            initial_guess = np.zeros(n-1, dtype=float)
+            results =  ant_jacobi(matrix_a, matrix_b, initial_guess,flag,tolerance)
+            if results is not None:
+                 st.write("The result of the Jacobi method is:", results)
+            else:
+                 st.write("The Jacobi method failed to converge!")
         else:
-             st.write("The Jacobi method failed to converge!")
-    else:
-        st.write("it is an augmented matrix so column should be one more for the constants")
+            st.write("it is an augmented matrix so column should be one more for the constants")

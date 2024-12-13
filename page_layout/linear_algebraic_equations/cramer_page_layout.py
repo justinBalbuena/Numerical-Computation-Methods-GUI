@@ -21,11 +21,13 @@ def cramer_page_layout():
     display_matrix(user_matrix)
     pressed = st.button("Evaluate")
     if pressed:
-        st.header("Results", divider="blue")
-        matrix_a = np.asmatrix(user_matrix)
-        matrix_b = matrix_a[:,-1]
-        matrix_a = np.delete(matrix_a,-1, 1)
-        results = ant_crammer_rule(matrix_a,matrix_b)
-        for i in range(len(results)):
-            st.write(results[i])
-
+        if n == m+1:
+            st.header("Results", divider="blue")
+            matrix_a = np.asmatrix(user_matrix)
+            matrix_b = matrix_a[:,-1]
+            matrix_a = np.delete(matrix_a,-1, 1)
+            results = ant_crammer_rule(matrix_a,matrix_b)
+            for i in range(len(results)):
+                st.write(results[i])
+        else:
+            st.write("it is an augmented matrix so column should be one more for the constants")
