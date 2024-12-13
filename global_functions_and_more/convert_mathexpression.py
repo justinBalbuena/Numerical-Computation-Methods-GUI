@@ -13,7 +13,8 @@ def transform_math_expression(expression):
     expression = re.sub(r'([x])([\^])',r'\1**',expression)
     expression = re.sub(r'([)])([\^])',r'\1**',expression)
     #find pattern with r and ^ and transforms it. so e^12321132 = e**12321132
-    expression = re.sub(r'([e])([\^])',r'\1**',expression)
+    expression = re.sub(r'([e])([\^])', r'\1**', expression)
+    expression = re.sub(r'\be\b', "2.71828182845905", expression)
     return expression
 # Purpose of this is to make it easier for the user to input mathematical expression like 2x instead of 2*x
 # In the case where you have used sympy where e constant is E instead of e this could be used to make it consistent throughout
