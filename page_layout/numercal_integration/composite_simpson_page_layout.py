@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.compsimpson import composite_simpsons
+from functions.Ant.numerical_integration.simpson import simpson_rule
 
 
 def composite_simpson_page_layout():
@@ -71,7 +71,6 @@ def composite_simpson_page_layout():
             y_arr = [float(y) for y in st.session_state["y_arr"]]
 
             res = {x_arr[i]: y_arr[i] for i in range(len(x_arr))}
-            #wanted = st.session_state["wanted_value"]
             usern = st.session_state["nvals"]
             inh = st.session_state["hval"]
             # Results Section
@@ -85,7 +84,7 @@ def composite_simpson_page_layout():
                         </style>
 
                         <h4>
-                            The integrated value is: <span class="focus_highlight">{composite_simpsons(res,inh,usern)}</span>
+                            The integrated value is: <span class="focus_highlight">{simpson_rule(x_arr,y_arr,hv)}</span>
                         </h4>
 
                     """,

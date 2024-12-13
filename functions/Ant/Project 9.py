@@ -33,11 +33,12 @@ def trapezoidal_rule(x,f_x,h):
 
 def simpson_rule(x,f_x,h):
     #variable the holds value for Σ
+    n = len(x)-1
     sum_of_simpson1 = 0
     sum_of_simpson2 = 0
     #creates variables that will determine the range for both Σ limit
-    e1 = int(8/2 - 1)
-    e2 = int(8/2)
+    e1 = int(n/2 - 1)
+    e2 = int(n/2)
     for i in range(1,e1+1):
         #same as before
         x_k = x[0]
@@ -58,8 +59,9 @@ def simpson_rule(x,f_x,h):
         index = x.index(x_k)
         sum_of_simpson2 += f_x[index]
     #equation to determine x_n
-    x_n = h*8
+    x_n = h*n
     x_n += x[0]
+    print(x_n)
     #finds the index in x where
     index = x.index(x_n)
     #equations for the solution
