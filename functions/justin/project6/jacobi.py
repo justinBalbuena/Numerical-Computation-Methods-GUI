@@ -56,8 +56,9 @@ def jacobi_method(A, tolerance, flag):
     diag_matrix = A.copy()
 
     # Check if the matrix is diagonally dominant, and diagonalize it if necessary
-    if is_diagonally_dominant(A) == False:
+    if not is_diagonally_dominant(A):
         diag_matrix = diagonalization(A)
+
 
     # Get the number of rows and columns in the matrix
     row_indices = diag_matrix.shape[0]
@@ -101,18 +102,16 @@ def jacobi_method(A, tolerance, flag):
 
         # Error evaluation based on the stopping criteria flag ('MAE' or 'RMSE')
         match flag:
-            case 'MAE':
+            case 'a':
                 for i in range(len(new_x)):
                     error += abs(new_x[i] - old_x_approximation[i])
                 error /= row_indices
-                print(error)
                 if error < tolerance:
                     return new_x
-            case 'RMSE':
+            case 'b':
                 for i in range(len(new_x)):
                     error += pow((new_x[i] - old_x_approximation[i]), 2)
                 error = sqrt((error / row_indices))
-                print(error)
                 if error < tolerance:
                     return new_x
             case _:

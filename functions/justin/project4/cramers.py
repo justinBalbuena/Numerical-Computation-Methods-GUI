@@ -55,6 +55,7 @@ if __name__ == "__main__":
         constants_col = Matrix(constants)
 
         matrix = matrix.col_insert(matrix_size, constants_col)
+        print(matrix)
         print(cramer(matrix))
 
         continue_or = input("\nContinue or stop? (Y/N): ")

@@ -30,18 +30,18 @@ def lagrange_interpolation(values, wanted_value, type):
     return interpolated_value
 
 
-def lagrange_with_diff(values, step, flag, type):
+def lagrange_with_diff(values, step, user_input, flag, type):
     """
 
     :param values: dictionary of x and y values
     :param step: value of h
+    :user_input: the derivative of the matching x that the user wants to find
     :param flag: the kind of formula to use
     :param type: type of interpolation to use
     :return: the derivative found using the formulas and interpolating
     """
 
     values_copy = values.copy()
-    user_input = float(input("What derivative value do you want: "))
     y0 = None
     if user_input not in values:
         y0 = lagrange_interpolation(values_copy, user_input, type)
@@ -92,14 +92,15 @@ def lagrange_with_diff(values, step, flag, type):
             return "Did not enter a flag value"
 
 
-cord_dict = {
-    0.15: 0.1761,
-    0.21: 0.3222,
-    0.23: 0.3617,
-    0.27: 0.4314,
-    0.32: 0.5051,
-    0.35: 0.54410
-}
+if __name__ == "__main__":
+    cord_dict = {
+        0.15: 0.1761,
+        0.21: 0.3222,
+        0.23: 0.3617,
+        0.27: 0.4314,
+        0.32: 0.5051,
+        0.35: 0.54410
+    }
 
-testval = lagrange_with_diff(cord_dict, 0.01, 'a', 'cubic')
-print(testval)
+    testval = lagrange_with_diff(cord_dict, 0.01, 0.22, 'a', 'cubic')
+    print(testval)

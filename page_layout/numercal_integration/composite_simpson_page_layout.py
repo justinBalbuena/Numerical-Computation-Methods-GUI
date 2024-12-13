@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.compsimpson import composite_simpsons
+from functions.justin.project9.simpsons_rule import composite_simpsons
 
 
 def composite_simpson_page_layout():

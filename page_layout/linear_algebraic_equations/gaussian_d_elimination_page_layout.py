@@ -1,6 +1,6 @@
 import streamlit as st
 from sympy import Matrix
-from functions.Kristina.gauss import gauss_with_pivot
+from functions.justin.project5.gaussian import gauss_with_pivot
 
 def gaussian_d_elimination_page_layout():
     st.title("Gaussian Elimination")

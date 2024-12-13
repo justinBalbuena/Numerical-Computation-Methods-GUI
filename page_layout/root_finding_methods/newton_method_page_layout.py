@@ -1,7 +1,8 @@
 import streamlit as st
 
+from global_functions_and_more.convert_mathexpression import transform_math_expression
 from global_functions_and_more.error_option import error_tolerance_methods
-from functions.Ant.newton_method import ant_newton
+from functions.justin.project3.newtons import newtons
 
 def newton_method_page_layout():
     # Newton's Method
@@ -11,6 +12,7 @@ def newton_method_page_layout():
     st.write("may not converge on some occasions")
     # Theorem section
     st.header("Theorem", divider="blue")
+    st.write("If f(x) is a real, continuously differentiable function and f'(x) != 0 at the initial guess x0, then Newton's Method converges to a root of f(x) = 0 near x0 provided x0 is sufficiently close to the actual root.")
 
     # Calculation Section
     st.header("Calculation", divider="blue")
@@ -20,12 +22,13 @@ def newton_method_page_layout():
 
     #the first in the form
     function = newton_method_form.text_input("Please enter a non-linear function")
+    function = transform_math_expression(function)
     x_guess = newton_method_form.number_input("Please enter an initial guess for x",value=None)
     tolerance = newton_method_form.number_input("Tolerance value (no negative)", value=None, format="%f",min_value=0.0000000000000000001)
     pressed = newton_method_form.form_submit_button("Evaluate")
 
     if pressed:
-         root,iterations = ant_newton(x_guess, function, tolerance,flag)
+         root,iterations = newtons(x_guess, flag, function, tolerance)
          if root:
             st.write("Root Result: ", root, " Number of iterations: ", iterations)
          else:

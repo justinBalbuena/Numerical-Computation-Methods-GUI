@@ -6,29 +6,36 @@ def newtons_for_extrema(x0, tolerance, user_function):
     iterations = 0.0
     scaling_coefficient = 0.1
 
+    # sets up a function using lambdify to set up the user's given function for usability
     x = symbols('x')
+    user_function = user_function.replace('e', 'E')
+    user_expression = sympify(user_function)
+    # Create a callable function for the user's expression
+    user_func = lambdify(x, user_expression)
 
-    # sets up a function using lambda to set up the user's given function for usability
-    user_expression = eval(user_function)
-    user_expression_for_use = lambda x: eval(user_function)
+    # Compute the derivative of the user's function
+    derived_function = user_expression.diff(x)
+    # Create a callable function for the derivative
+    derivative_func = lambdify(x, derived_function)
 
-    # First derivative of the user's expression
-    # The use of .doit() forces it to do the actual derivative
-    # Casting to a string allows for the eval to use a string version of the derivative that works rather than a
-    # derivative object that it can't
-
-    derived_function = Derivative(user_expression, x).doit()
-    derivative_for_use = lambda x: eval(str(derived_function))
-
-    # Second derivative of the user's expression
-    second_order_derivative = Derivative(derived_function, x).doit()
-    second_order_derivative_for_use = lambda x: eval(str(second_order_derivative))
+    derived_function_second = derived_function.diff(x)
+    derivative_func_second = lambdify(x, derived_function_second)
 
     while True:
         iterations += 1
-        x_next = x_current - scaling_coefficient * (derivative_for_use(x_current) / second_order_derivative_for_use(x_current))
+
+        # Check if the second derivative is zero to avoid division by zero
+        second_derivative_value = derivative_func_second(x_current)
+        if second_derivative_value == 0:
+            raise ValueError("Second derivative is zero at x = {x_current}. Cannot proceed.")
+
+        # Newton's method formula for finding extrema
+        x_next = x_current - scaling_coefficient * (derivative_func(x_current) / second_derivative_value)
+
+        # Check if the change is within the tolerance
         if abs(x_next - x_current) <= tolerance:
-            return x_next, user_expression_for_use(x_next), iterations
+            y_value = user_func(x_next)  # Compute the y-value at the extrema
+            return x_next, y_value, iterations
         else:
             x_current = x_next
 

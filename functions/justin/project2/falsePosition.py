@@ -1,8 +1,8 @@
 import math
-import sympy as sp
+from sympy import *
 
 
-def false_position(x0, x1, choice, user_function, delta):
+def false_position(x0, x1, choice, math_function, delta):
     """
 
     :param x0: left bound value
@@ -12,7 +12,12 @@ def false_position(x0, x1, choice, user_function, delta):
     :param delta: threshold value
     :return: x value of root, number of iterations
     """
-
+    # sets up a function using lambdify to set up the user's given function for usability
+    x = symbols('x')
+    math_function = math_function.replace('e', 'E')
+    user_expression = sympify(math_function)
+    # Create a callable function for the user's expression
+    user_function = lambdify(x, user_expression)
     if user_function(x0) * user_function(x1) < 0:
         pass
     else:
@@ -71,7 +76,6 @@ if __name__ == "__main__":
     while True:
         # Gets the equation from the user
         user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3): ")
-        x = lambda x: eval(user_input)
 
         # Gets the bounds
         left_bound = float(input("Enter your left bound value: "))

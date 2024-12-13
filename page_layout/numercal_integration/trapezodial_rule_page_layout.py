@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.trapezoidrule import trapezoidal_rule
+from functions.justin.project9.trapezoidal_rule import trapezoidal_rule
 
 
 def trapezoidal_rule_page_layout():
@@ -79,7 +79,7 @@ def trapezoidal_rule_page_layout():
                         </style>
 
                         <h4>
-                            The integrated value is: <span class="focus_highlight">{trapezoidal_rule(res,inh)}</span>
+                            The integrated value is: <span class="focus_highlight">{trapezoidal_rule(res, inh)}</span>
                         </h4>
 
                     """,

@@ -54,5 +54,5 @@ def matrix_menu(m,n):
                 A.append(st.number_input(f'A[{i + 1},{j + 1}]', value=0, key=f'A[{i + 1},{j + 1}]'))
 
     # Create a dataframe matrix from the input
-    custom_matrix = np.array(A).reshape(m,n)
+    custom_matrix = list(np.array(A).reshape(m,n))
     return custom_matrix

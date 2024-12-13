@@ -1,6 +1,6 @@
 import streamlit as st
 from global_functions_and_more.format_functions import x_y_field
-from functions.melvin.lagrange_diff import numdef
+from functions.justin.project8.langrange_with_diff import lagrange_with_diff
 
 
 def lagrange_variations_layout():
@@ -37,22 +37,27 @@ def lagrange_variations_layout():
         "3 points centered": "c"
     }
 
-    # error
-    usererror = st.text_input(label="**:green[Error Tolerance Value]**: ", key="users_error_value")
+    quad_or_cub = {
+        "Quadratic": "quadratic",
+        "Cubic": "cubic"
+    }
+
+    interp_type = st.radio("Quadratic or Cubic Interpolation: ", quad_or_cub.keys())
+    type = quad_or_cub[interp_type]
+
+    # Step Value
+    step_value = st.number_input(label="**:green[Step Value]**: ", key="users_step_value")
 
     # Number of columns input
     columns = st.text_input(label="**:green[Columns]**: ", key="amount_of_columns")
 
     wanted_value = st.text_input(label="**:green[Wanted Value to Differentiate]**: ", key="users_wanted_value")
     # Only create fields if `columns` is a valid integer
-    if columns and columns.isdigit() and wanted_value and usererror:
+    if columns and columns.isdigit() and wanted_value and step_value:
         columns = int(columns)
         st.session_state["columns"] = columns  # Save the columns count in session state
 
         st.session_state["diffform"] = choices[selected_option]
-
-        usererr = float(usererror)
-        st.session_state["usererror"] = usererr
 
         wanted_value = float(wanted_value)
         st.session_state["wanted_value"] = wanted_value
@@ -69,10 +74,13 @@ def lagrange_variations_layout():
 
             x_arr = [float(x) for x in st.session_state["x_arr"]]
             y_arr = [float(y) for y in st.session_state["y_arr"]]
+            my_dict = dict(zip(x_arr, y_arr))
+
 
             wanted = st.session_state["wanted_value"]
-            inerror = st.session_state["usererror"]
             diffch = st.session_state["diffform"]
+
+            print(my_dict, step_value, wanted, diffch, type)
             st.markdown(
                 f"""
                         <style>
@@ -82,7 +90,7 @@ def lagrange_variations_layout():
                         </style>
 
                         <h4>
-                            The differentiated value at <span class="focus_highlight">{st.session_state["wanted_value"]}</span> is: <span class="focus_highlight">{numdef(x_arr, y_arr, inerror, diffch, 1, wanted)}</span>
+                            The differentiated value at <span class="focus_highlight">{wanted}</span> is: <span class="focus_highlight">{lagrange_with_diff(my_dict, step_value, wanted, diffch, type)}</span>
                         </h4>
 
                     """,

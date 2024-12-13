@@ -1,7 +1,6 @@
 from sympy import *
 from random import *
 
-
 def is_diagonally_dominant(A):
     """
     Checks if the matrix A is diagonally dominant.
@@ -68,7 +67,7 @@ def gauss_seidel(A, tolerance, flag):
     diag_matrix = A.copy()
 
     # Check for diagonal dominance and diagonalize if necessary
-    if is_diagonally_dominant(A) == False:
+    if not is_diagonally_dominant(A):
         diag_matrix = diagonalization(A)
 
     # Get the number of rows and columns in the matrix
@@ -108,13 +107,13 @@ def gauss_seidel(A, tolerance, flag):
                     new_x[i] = new_x[i] - diag_matrix[i, j] * new_x[j]
 
         match flag:
-            case 'MAE':
+            case 'a':
                 for i in range(len(new_x)):
                     error += abs(new_x[i] - old_x_approximation[i])
                 error /= row_indices
                 if error < tolerance:
                     return new_x
-            case 'RMSE':
+            case 'b':
                 for i in range(len(new_x)):
                     error += pow((new_x[i] - old_x_approximation[i]), 2)
                 error = sqrt((error / row_indices))

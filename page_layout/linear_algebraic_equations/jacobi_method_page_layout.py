@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
-
-from functions.Ant.jacobi_method import ant_jacobi
+from sympy import *
+from functions.justin.project6.jacobi import jacobi_method
 from global_functions_and_more.matrix_showcase import matrix_menu, display_matrix
 from global_functions_and_more.error_option import error_tolerance_methods_iter
 
@@ -30,13 +30,13 @@ def jacobi_method_page_layout():
     display_matrix(user_matrix)
     pressed = st.button("Evaluate")
     if pressed:
-        matrix_a = user_matrix
-        matrix_b = user_matrix[:,-1]
-        matrix_a = np.delete(matrix_a, -1, 1)
-        initial_guess = np.zeros(n-1, dtype=float)
-        results =  ant_jacobi(matrix_a, matrix_b, initial_guess,flag,tolerance)
+        st.header("Results", divider="blue")
+        matrix_a = Matrix(user_matrix)
+
+        results = jacobi_method(matrix_a, tolerance, flag)
         if results is not None:
-             st.write("The result of the Jacobi method is:", results)
+            for i in range(len(results)):
+                st.write(float(results[i]))
         else:
-             st.write("The Jacobi method failed to converge!")
+            st.write("There was no unique solution")
 

@@ -12,13 +12,19 @@ def newtons(x0, choice, user_function, delta):
     :return:
     """
 
-    # sets up a function using lambda to set up the user's given function for usability
-    user_expression = lambda x: eval(user_function)
-
-    # sets up a function using lambda and sympy to set up the derivative of the user's function
+    # sets up a function using lambdify to set up the user's given function for usability
     x = symbols('x')
-    derived_function = Derivative(user_function, x)
-    derivative = lambda x: eval(format(derived_function.doit()))
+    user_function = user_function.replace('e', 'E')
+    user_expression = sympify(user_function)
+
+    # Create a callable function for the user's expression
+    user_func = lambdify(x, user_expression)
+
+    # Compute the derivative of the user's function
+    derived_function = user_expression.diff(x)
+
+    # Create a callable function for the derivative
+    derivative_func = lambdify(x, derived_function)
 
     # setting up iteration and epsilon variables for use
     iteration = 0
@@ -26,17 +32,17 @@ def newtons(x0, choice, user_function, delta):
 
     # this begins the iterative process
     while True:
-        if user_expression(x0) == 0:
+        if user_func(x0) == 0:
             return x0
 
         iteration = iteration + 1
 
         # if the value of the derivative at the position given by the user is 0, it gets a new x0
-        if derivative(x0) == 0:
-            while derivative(x0) == 0:
-                x0 = float(input("Enter a new x0"))
+        if derivative_func(x0) == 0:
+            while derivative_func(x0) == 0:
+                return None
 
-        x1 = x0 - (user_expression(x0) / derivative(x0))
+        x1 = x0 - (user_func(x0) / derivative_func(x0))
 
         match choice:
             # compares using the absolute approximate error
@@ -51,12 +57,12 @@ def newtons(x0, choice, user_function, delta):
                     return x1, iteration
             # compares using the true absolute error
             case 'c':
-                epsilon = math.fabs(user_expression(x1))
+                epsilon = math.fabs(user_func(x1))
                 if epsilon < delta:
                     return x1, iteration
             # compares using a Conjunction of an absolute approximate error and an estimated true absolute error
             case 'd':
-                if math.fabs(x1 - x0) < delta and math.fabs(user_expression(x1)) < delta:
+                if math.fabs(x1 - x0) < delta and math.fabs(user_func(x1)) < delta:
                     return x1, iteration
 
         # updates x0 to x1
@@ -66,8 +72,7 @@ def newtons(x0, choice, user_function, delta):
 if __name__ == "__main__":
     while True:
         # Gets the equation from the user
-        user_input = input("Enter a function of x in a python readable line (e.g., x**2 + 3), the sympy library is "
-                           "imported so please use it as you'd like: ")
+        user_input = "e**x - 4 * x"
 
         # Gets the position
         position = float(input("Enter your position value: "))
